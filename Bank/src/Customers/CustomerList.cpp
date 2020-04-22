@@ -1,5 +1,4 @@
-#include "Bank/CustomerList.h"
-#include "../ConsoleInput.h"
+#include "Customers/CustomerList.h"
 
 #include <exception>
 
