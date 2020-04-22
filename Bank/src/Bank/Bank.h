@@ -10,7 +10,7 @@
 #include "Accounts/SavingsAccount.h"
 #include "Accounts/PrivilegeAccount.h"
 #include "Customers/Customer.h"
-#include "Customers/CustomerList.h"
+#include "CustomerList/CustomerList.h"
 
 class Bank 
 {

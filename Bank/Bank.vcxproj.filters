@@ -42,10 +42,10 @@
     <ClInclude Include="src\Account\Account.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Bank\CustomerList.h">
+    <ClInclude Include="src\ConsoleInput.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\ConsoleInput.h">
+    <ClInclude Include="src\CustomerList\CustomerList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -77,10 +77,10 @@
     <ClCompile Include="src\Account\Account.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Bank\CustomerList.cpp">
+    <ClCompile Include="src\ConsoleInput.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ConsoleInput.cpp">
+    <ClCompile Include="src\CustomerList\CustomerList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

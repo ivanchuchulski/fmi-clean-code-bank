@@ -152,7 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\ConsoleInput.h" />
-    <ClInclude Include="src\Bank\CustomerList.h" />
+    <ClInclude Include="src\CustomerList\CustomerList.h" />
     <ClInclude Include="src\Account\Account.h" />
     <ClInclude Include="src\AccountType\AccountType.h" />
     <ClInclude Include="src\Accounts\CurrentAccount.h" />
@@ -165,7 +165,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ConsoleInput.cpp" />
-    <ClCompile Include="src\Bank\CustomerList.cpp" />
+    <ClCompile Include="src\CustomerList\CustomerList.cpp" />
     <ClCompile Include="src\Account\Account.cpp" />
     <ClCompile Include="src\Accounts\CurrentAccount.cpp" />
     <ClCompile Include="src\Accounts\PrivilegeAccount.cpp" />
