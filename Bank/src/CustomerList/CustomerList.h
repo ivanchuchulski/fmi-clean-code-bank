@@ -23,8 +23,9 @@ public:
 	void Clear();
 
 	bool Empty() const;
-	bool IsCustomerRegistered(std::vector<Customer>::const_iterator customerIt) const;
 	bool CustomerDoesNotExist(const std::string& customerID) const;
+	
+private:
 	std::vector<Customer>::const_iterator GetCustomerPosition(const std::string& customerID) const;
 
 private:

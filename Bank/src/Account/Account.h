@@ -39,7 +39,7 @@ public:
 	virtual int GetAccountType() const = 0;
 	virtual Account* CloneAccount() const = 0;
 	virtual void Deposit(double depositAmmount) = 0;
-	virtual bool Withdraw(double withdrawAmmount) = 0;
+	virtual void Withdraw(double withdrawAmmount) = 0;
 	virtual void DisplayAccount() const = 0;
 
 

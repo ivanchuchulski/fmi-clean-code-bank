@@ -1,4 +1,5 @@
 #include "PrivilegeAccount.h"
+#include <exception>
 
 // TODO : improve logic in the Withdraw method
 
@@ -93,25 +94,24 @@ void PrivilegeAccount::Deposit(double depositAmmount)
 	IncreaseBalance(depositAmmount);
 }
 
-bool PrivilegeAccount::Withdraw(double withdrawAmmount)
+void PrivilegeAccount::Withdraw(double withdrawAmmount)
 {
 	// if there is zero balance no withdraw
 	if (GetBalance() <= 0)
 	{
-		return false;
+		throw std::exception("error : negative balance");
 	}
 
 	// if balance plus overdraft is not enough to cover the withdraw
 	else if (GetBalance() + m_overdraftOverBalance < withdrawAmmount) 
 	{
-		return false;
+		throw std::exception("error : not enough balace to finish withdraw");
 	}
 
 	// if balance is enough for the withdraw
 	else if (GetBalance() >= withdrawAmmount)
 	{
 		DecreaseBalance(withdrawAmmount);
-		return true;
 	}
 
 	// if balance is not enough for the withdraw and we have also use the overdraft
@@ -121,10 +121,7 @@ bool PrivilegeAccount::Withdraw(double withdrawAmmount)
 
 		DecreaseOverdraft(moneyLack);
 		DecreaseBalance(withdrawAmmount - moneyLack);
-
-		return true;
 	}
-
 }
 
 void PrivilegeAccount::DisplayAccount() const

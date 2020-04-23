@@ -1,5 +1,5 @@
 #include "CurrentAccount.h"
-
+#include <exception>
 
 //
 CurrentAccount::CurrentAccount(const CurrentAccount& other)
@@ -50,15 +50,14 @@ void CurrentAccount::Deposit(double depositAmmount)
 	IncreaseBalance(depositAmmount);
 }
 
-bool CurrentAccount::Withdraw(double withdrawAmmount)
+void CurrentAccount::Withdraw(double withdrawAmmount)
 {
 	if (GetBalance() < withdrawAmmount) 
 	{
-		return false; 
+		throw std::exception("error : not enough balace to finish withdraw");
 	}
 
 	DecreaseBalance(withdrawAmmount);
-	return true;
 }
 
 void CurrentAccount::DisplayAccount() const

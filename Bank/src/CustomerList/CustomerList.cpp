@@ -43,18 +43,16 @@ void CustomerList::AddCustomer(const std::string& customerName, const std::strin
 
 void CustomerList::DeleteCustomer(const std::string& customerID)
 {
-	if (Empty()) {
-		throw std::exception("error : no regitered customers");
-	}
-
-	auto customerToRemovePosition = GetCustomerPosition(customerID);
-
-	if (!IsCustomerRegistered(customerToRemovePosition))
+	try
 	{
-		throw std::exception("customer removal failed : customer id not found\n");
-	}
+		auto customerToRemovePosition = GetCustomerPosition(customerID);
 
-	m_customers.erase(customerToRemovePosition);
+		m_customers.erase(customerToRemovePosition);
+	}
+	catch (const std::exception&)
+	{
+		throw;
+	}
 }
 
 void CustomerList::Clear()
@@ -67,18 +65,14 @@ bool CustomerList::Empty() const
 	return m_customers.empty();
 }
 
-bool CustomerList::IsCustomerRegistered(std::vector<Customer>::const_iterator customerIt) const
-{
-	return customerIt != m_customers.end();
-}
-
 bool CustomerList::CustomerDoesNotExist(const std::string& customerID) const
 {
 	auto customerPosition = GetCustomerPosition(customerID);
 
-	return !IsCustomerRegistered(customerPosition);
+	return customerPosition == m_customers.end();
 }
 
+// private helpers
 std::vector<Customer>::const_iterator CustomerList::GetCustomerPosition(const std::string& customerID) const
 {
 	for (auto customer = m_customers.begin(); customer != m_customers.end(); ++customer) 
@@ -89,6 +83,6 @@ std::vector<Customer>::const_iterator CustomerList::GetCustomerPosition(const st
 		}
 	}
 
-	return m_customers.end();
+	throw std::exception("error : customer does not exist\n");
 }
 

@@ -28,16 +28,13 @@ public:
 	void PrintAccounts() const;
 	void PrintCustomerAccounts(const std::string& ownerID) const;
 	bool NoOpenedAccounts() const;
-	bool IsAccountOpened(const std::string& IBAN) const;
-	Account* GetAccount(const std::string& IBAN);
-
 
 private:
 	void ClearAccounts();
 	void CopyAccounts(const std::vector<Account*>& otherAccounts);
 
-	bool IsAccountOpened(const std::vector<Account*>::const_iterator accountIt) const;
 	std::vector<Account*>::const_iterator GetAccountPosition(const std::string& accountIBAN) const;
+	Account* GetAccount(const std::string& IBAN);
 
 private:
 	std::vector<Account*> m_accounts;

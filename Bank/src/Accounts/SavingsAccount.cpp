@@ -1,5 +1,5 @@
 #include "SavingsAccount.h"
-
+#include <exception>
 
 // static members initialization
 const float SavingsAccount::M_YEARLY_INTEREST_DEFAULT = 1.1f;
@@ -91,15 +91,14 @@ void SavingsAccount::Deposit(double depositAmmount)
 	IncreaseBalance(depositAmmount);
 }
 
-bool SavingsAccount::Withdraw(double withdrawAmmount)
+void SavingsAccount::Withdraw(double withdrawAmmount)
 {
 	if (GetBalance() < withdrawAmmount) 
 	{
-		return false;
+		throw std::exception("error : not enough balace to finish withdraw");
 	}
 
 	DecreaseBalance(withdrawAmmount);
-	return true;
 }
 
 void SavingsAccount::DisplayAccount() const

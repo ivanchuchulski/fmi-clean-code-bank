@@ -29,7 +29,7 @@ public:
 	virtual int GetAccountType() const override;
 	virtual Account* CloneAccount() const override;
 	virtual void Deposit(double depositAmmount) override;
-	virtual bool Withdraw(double withdrawAmmount) override;
+	virtual void Withdraw(double withdrawAmmount) override;
 	virtual void DisplayAccount() const override;
 
 	// friend methods

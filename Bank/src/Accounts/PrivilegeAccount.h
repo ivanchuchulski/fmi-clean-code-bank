@@ -31,9 +31,9 @@ public:
 	// pure virtual mehtods overrides
 	virtual int GetAccountType() const override;
 	virtual Account* CloneAccount() const override;
-	void Deposit(double depositAmmount) override;
-	bool Withdraw(double withdrawAmmount) override;
-	void DisplayAccount() const override;
+	virtual void Deposit(double depositAmmount) override;
+	virtual void  Withdraw(double withdrawAmmount) override;
+	virtual void DisplayAccount() const override;
 
 	// friend methods
 	friend std::ostream& operator<<(std::ostream& outStream, const PrivilegeAccount& somePrivilAcc);
