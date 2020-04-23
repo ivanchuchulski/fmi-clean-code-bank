@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\AccountList\AccountList.h" />
     <ClInclude Include="src\ConsoleInput.h" />
     <ClInclude Include="src\CustomerList\CustomerList.h" />
     <ClInclude Include="src\Account\Account.h" />
@@ -164,6 +165,7 @@
     <ClInclude Include="src\Utils\Utils.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\AccountList\AccountList.cpp" />
     <ClCompile Include="src\ConsoleInput.cpp" />
     <ClCompile Include="src\CustomerList\CustomerList.cpp" />
     <ClCompile Include="src\Account\Account.cpp" />

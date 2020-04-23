@@ -11,6 +11,7 @@
 #include "Accounts/PrivilegeAccount.h"
 #include "Customers/Customer.h"
 #include "CustomerList/CustomerList.h"
+#include "AccountList/AccountList.h"
 
 class Bank 
 {
@@ -30,14 +31,14 @@ public:
 	const std::string GetAddress() const;
 
 	void AddCustomer(const std::string& customerName, const std::string& customerAddress);
-	void DeleteCustomer(const std::string& customerIDToRemove);
+	void DeleteCustomer(const std::string& customerID);
 
 	void AddAccount(const std::string& ownerID, const AccountType accountType);
 	void DeleteAccount(const std::string& iban);
 
 	void Transfer(const std::string& fromIBAN, const std::string& toIBAN, double ammount);
 	void DepositToAccount(const std::string& accountIBAN, double depositAmmount);
-	bool WithdrawFromAccount(const std::string& accountIBAN, double withdrawAmmount);
+	void WithdrawFromAccount(const std::string& accountIBAN, double withdrawAmmount);
 
 	void ListCustomers() const;
 	void ListAccounts() const;
@@ -45,29 +46,20 @@ public:
 	void PrintSupportedAccountTypes() const;
 	void DisplayBank() const;
 
-	// friend methods
 	friend std::ostream& operator<<(std::ostream& outStream, const Bank& bank);
 
 private:
 	void ClearBank();
 	void CopyOtherBank(const Bank& otherBank);
 
-	void ClearAccounts();
-	void CopyAccounts(const std::vector<Account*>& otherAccounts);
-
 	bool NoRegisteredCustomers() const;
 	bool NoOpenedAccounts() const;
-	
-	void RemoveAllCustomersAccounts(const std::string& customerID);
-
-	bool IsAccountOpened(const std::vector<Account*>::const_iterator accountIt) const;
-	std::vector<Account*>::const_iterator GetAccountPosition(const std::string& accountIBAN) const;
 
 private:
 	std::string m_bankName;
 	std::string m_bankAddress;
 	CustomerList m_customerList;
-	std::vector<Account*> m_accounts;
+	AccountList m_accountList;
 };
 
 #endif // !define BANK_H

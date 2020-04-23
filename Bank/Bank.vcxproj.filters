@@ -48,6 +48,9 @@
     <ClInclude Include="src\CustomerList\CustomerList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\AccountList\AccountList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Menu\Menu.cpp">
@@ -81,6 +84,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\CustomerList\CustomerList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AccountList\AccountList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
