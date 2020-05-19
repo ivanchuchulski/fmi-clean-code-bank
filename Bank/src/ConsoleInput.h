@@ -6,6 +6,7 @@ class ConsoleInput
 {
 public:
 	static Customer InputCustomer();
+	int getThree();
 
 };
 

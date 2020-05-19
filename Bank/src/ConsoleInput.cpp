@@ -13,3 +13,9 @@ Customer ConsoleInput::InputCustomer()
 
 	return Customer(name, address);
 }
+
+int ConsoleInput::getThree()
+{
+	return 3;
+}
+
