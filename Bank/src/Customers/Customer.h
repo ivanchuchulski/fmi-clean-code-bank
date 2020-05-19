@@ -34,7 +34,8 @@ public:
 	Customer inputCustomer();
 
 	// friend methods
-	friend std::ostream& operator<<(std::ostream& outStr, const Customer& someCustomer);
+	friend std::ostream& operator<<(std::ostream& outStr, const Customer& customer);
+	friend std::istream& operator>>(std::istream& inStr, Customer& customer);
 
 private:
 	static unsigned int M_ID_COUNTER;

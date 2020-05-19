@@ -152,7 +152,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\AccountList\AccountList.h" />
-    <ClInclude Include="src\ConsoleInput.h" />
+    <ClInclude Include="src\ConsoleApplication\ConsoleApplication.h" />
+    <ClInclude Include="src\ConsoleApplication\ConsoleInterface\ConsoleInterface.h" />
+    <ClInclude Include="src\ConsoleApplication\ConsoleInterface\Menu\Menu.h" />
+    <ClInclude Include="src\ConsoleApplication\ConsoleInterface\Menu\OptionCode\OptionCode.h" />
     <ClInclude Include="src\CustomerList\CustomerList.h" />
     <ClInclude Include="src\Account\Account.h" />
     <ClInclude Include="src\AccountType\AccountType.h" />
@@ -161,12 +164,13 @@
     <ClInclude Include="src\Accounts\SavingsAccount.h" />
     <ClInclude Include="src\Bank\Bank.h" />
     <ClInclude Include="src\Customers\Customer.h" />
-    <ClInclude Include="src\Menu\Menu.h" />
     <ClInclude Include="src\Utils\Utils.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AccountList\AccountList.cpp" />
-    <ClCompile Include="src\ConsoleInput.cpp" />
+    <ClCompile Include="src\ConsoleApplication\ConsoleApplication.cpp" />
+    <ClCompile Include="src\ConsoleApplication\ConsoleInterface\ConsoleInterface.cpp" />
+    <ClCompile Include="src\ConsoleApplication\ConsoleInterface\Menu\Menu.cpp" />
     <ClCompile Include="src\CustomerList\CustomerList.cpp" />
     <ClCompile Include="src\Account\Account.cpp" />
     <ClCompile Include="src\Accounts\CurrentAccount.cpp" />
@@ -175,7 +179,6 @@
     <ClCompile Include="src\Bank\Bank.cpp" />
     <ClCompile Include="src\Customers\Customer.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\Menu\Menu.cpp" />
     <ClCompile Include="src\Utils\Utils.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

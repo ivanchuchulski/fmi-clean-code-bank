@@ -75,3 +75,8 @@ std::ostream& operator<<(std::ostream& outStream, const Customer& customer)
 
 	return outStream;
 }
+
+std::istream& operator>>(std::istream& inStream, Customer& customer)
+{
+	return inStream;
+}

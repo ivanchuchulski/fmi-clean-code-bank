@@ -1,3 +1,2 @@
 ﻿  BankTest.cpp
-     Creating library D:\development\FMI-Bank\x64\Debug\BankTest.lib and object D:\development\FMI-Bank\x64\Debug\BankTest.exp
-  BankTest.vcxproj -> D:\development\FMI-Bank\x64\Debug\BankTest.dll
+D:\development\FMI-Bank\BankTest\BankTest.cpp(4,10): fatal error C1083: Cannot open include file: 'ConsoleInput.h': No such file or directory

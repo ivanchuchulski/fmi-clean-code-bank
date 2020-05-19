@@ -1,7 +1,6 @@
 #include "Bank.h"
 
 #include <algorithm>
-#include "../ConsoleInput.h"
 
 
 Bank::Bank()

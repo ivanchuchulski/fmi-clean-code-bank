@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Menu\Menu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Accounts\CurrentAccount.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -42,20 +39,26 @@
     <ClInclude Include="src\Account\Account.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\ConsoleInput.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\CustomerList\CustomerList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\AccountList\AccountList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\ConsoleApplication\ConsoleApplication.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConsoleApplication\ConsoleInterface\ConsoleInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConsoleApplication\ConsoleInterface\Menu\Menu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConsoleApplication\ConsoleInterface\Menu\OptionCode\OptionCode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Menu\Menu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Accounts\CurrentAccount.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -80,13 +83,19 @@
     <ClCompile Include="src\Account\Account.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ConsoleInput.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\CustomerList\CustomerList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\AccountList\AccountList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ConsoleApplication\ConsoleApplication.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ConsoleApplication\ConsoleInterface\ConsoleInterface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ConsoleApplication\ConsoleInterface\Menu\Menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
