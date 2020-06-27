@@ -4,7 +4,11 @@
 // static members initialization
 const float SavingsAccount::M_YEARLY_INTEREST_DEFAULT = 1.1f;
 
-//
+SavingsAccount::SavingsAccount()
+	:	Account(),
+		m_yearlyInterestProcent(M_YEARLY_INTEREST_DEFAULT)
+{}
+
 SavingsAccount::SavingsAccount(const std::string& ownerID)
 	:	Account(ownerID),
 		m_yearlyInterestProcent(M_YEARLY_INTEREST_DEFAULT)
@@ -29,24 +33,24 @@ SavingsAccount& SavingsAccount::operator=(const SavingsAccount& other)
 	return *this;
 }
 
-
-// getters
 const float SavingsAccount::GetInterestProcent()
 {
 	return m_yearlyInterestProcent;
 }
 
-
-// setters
 void SavingsAccount::IncreaseInterest(float interestIncrease)
 {
 	if (interestIncrease < 0)
-		return;
+	{
+		throw std::exception("error : interest increase can not be negative");
+	}
 
 	float increasedInterest = m_yearlyInterestProcent + interestIncrease;
 
 	if (increasedInterest > 100)
+	{
 		return;
+	}
 
 	m_yearlyInterestProcent = increasedInterest;
 }
@@ -54,12 +58,17 @@ void SavingsAccount::IncreaseInterest(float interestIncrease)
 void SavingsAccount::DecreaseInterest(float interestDecrease)
 {
 	if (interestDecrease < 0)
-		return;
+	{
+		throw std::exception("error : interest decrease can not be negative");
+	}
 
 	float decreasedInterest = m_yearlyInterestProcent - interestDecrease;
 	
 	if (decreasedInterest < 0)
-		return;
+	{
+		throw std::exception("error : interest can not be negative");
+
+	}
 
 	m_yearlyInterestProcent = decreasedInterest;
 }

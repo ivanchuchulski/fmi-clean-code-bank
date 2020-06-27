@@ -17,6 +17,7 @@ void ConsoleApplication::Start()
     do
     {
         consoleInterface.DisplayMenu();
+
         OptionCode option = consoleInterface.GetOption();
 
         switch (option)
@@ -72,6 +73,7 @@ void ConsoleApplication::Start()
             case OptionCode::Quit:
                 running = false;
                 break;
+
             default:
                 break;
         }
@@ -79,4 +81,72 @@ void ConsoleApplication::Start()
     } while (running);
 
     std::cout << "exiting...\n";
+}
+
+Customer* ConsoleApplication::InputCustomerDetails()
+{
+    return nullptr;
+}
+
+void ConsoleApplication::AddCustomer()
+{
+    std::string customerAddress = consoleInterface.InputCustomerAddress();
+    std::string customerName = consoleInterface.InputCustomerName();
+
+    Customer* customer = new Customer(customerName, customerAddress);
+
+    bank.AddCustomer(customer);
+}
+
+void ConsoleApplication::DeleteCustomer()
+{
+    try
+    {
+        std::string customerID = consoleInterface.InputCustomerID();
+
+        bank.DeleteCustomer(customerID);
+    }
+    catch (const std::exception& exception)
+    {
+        consoleInterface.PrintException(exception);
+    }
+
+}
+
+void ConsoleApplication::AddAccount()
+{
+}
+
+void ConsoleApplication::DeleteAccount()
+{
+}
+
+void ConsoleApplication::ListCustomers()
+{
+    bank.ListCustomers();
+}
+
+void ConsoleApplication::ListAllCustomersAccount()
+{
+}
+
+
+void ConsoleApplication::ListAccounts()
+{
+}
+
+void ConsoleApplication::BankInformation()
+{
+}
+
+void ConsoleApplication::Withdraw()
+{
+}
+
+void ConsoleApplication::Deposit()
+{
+}
+
+void ConsoleApplication::Transfer()
+{
 }

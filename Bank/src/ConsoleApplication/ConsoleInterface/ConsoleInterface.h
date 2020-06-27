@@ -3,6 +3,10 @@
 #include "Menu/Menu.h"
 #include "Menu/OptionCode/OptionCode.h"
 #include "Customers/Customer.h"
+#include "Account/Account.h"
+#include "Accounts/CurrentAccount.h"
+#include "Accounts/PrivilegeAccount.h"
+#include "Accounts/SavingsAccount.h"
 
 class ConsoleInterface
 {
@@ -13,12 +17,15 @@ public:
 	void DisplayMenu();
 	OptionCode GetOption();
 
-	Customer InputCustomerDetails();
 	std::string InputCustomerID();
+	std::string InputCustomerName();
+	std::string InputCustomerAddress();
 
-	int InputAccountType();
+	AccountType InputAccountType();
 	std::string InputAccountIBAN();
 	double InputMoneyAmmount();
+
+	void PrintException(const std::exception& exception);
 
 private:
 	void IgnoreWhitespaces();

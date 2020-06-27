@@ -1,17 +1,18 @@
 #include "PrivilegeAccount.h"
 #include <exception>
 
-// TODO : improve logic in the Withdraw method
-
 // static member initialization
 const double PrivilegeAccount::M_OVERDRAFT_DEFAULT = 100.0;
 
-//
+PrivilegeAccount::PrivilegeAccount()
+	:	Account(),
+		m_overdraftOverBalance(M_OVERDRAFT_DEFAULT)
+{}
+
 PrivilegeAccount::PrivilegeAccount(const std::string& ownerID)
 	:	Account(ownerID),
 		m_overdraftOverBalance(M_OVERDRAFT_DEFAULT)
 {}
-
 
 PrivilegeAccount::PrivilegeAccount(const std::string& ownerID, double initialDeposit, double overdraft)
 	:	Account(ownerID, initialDeposit),
@@ -32,44 +33,39 @@ PrivilegeAccount& PrivilegeAccount::operator=(const PrivilegeAccount& other)
 	return *this;
 }
 
-
-// getters
 const double PrivilegeAccount::GetOverdraft() const
 {
 	return m_overdraftOverBalance;
 }
 
-
-// setters
 void PrivilegeAccount::IncreaseOverdraft(double overdraftIncrease)
 {
-	// overdraftIncrease should be positive number
 	if (overdraftIncrease < 0)
-		return;
+	{
+		throw std::exception("error : overdraft increase can not be negative number\n");
+	}
 
 	m_overdraftOverBalance += overdraftIncrease;
 }
 
 void PrivilegeAccount::DecreaseOverdraft(double overdraftDecrease)
 {
-	// overdraftDecrease should be positive number
 	if (overdraftDecrease < 0)
 	{
-		return;
+		throw std::exception("error : overdraft descrease can not be negative number\n");
 	}
 
 	double decreasedOverdraft = m_overdraftOverBalance - overdraftDecrease;
 
 	if (decreasedOverdraft < 0)
 	{
-		return;
+		throw std::exception("error : overdraft can not be negative number\n");
 	}
 
 	m_overdraftOverBalance = decreasedOverdraft;
 }
 
-
-// virtual methods
+// virtual methods overrides
 void PrivilegeAccount::InputAccount(const std::string& ownerID)
 {
 	Account::InputAccount(ownerID);
@@ -102,25 +98,25 @@ void PrivilegeAccount::Withdraw(double withdrawAmmount)
 		throw std::exception("error : negative balance");
 	}
 
-	// if balance plus overdraft is not enough to cover the withdraw
-	else if (GetBalance() + m_overdraftOverBalance < withdrawAmmount) 
-	{
-		throw std::exception("error : not enough balace to finish withdraw");
-	}
-
-	// if balance is enough for the withdraw
+	// if balance alone is enough for the withdraw, then just directly decrese from it
 	else if (GetBalance() >= withdrawAmmount)
 	{
 		DecreaseBalance(withdrawAmmount);
 	}
 
 	// if balance is not enough for the withdraw and we have also use the overdraft
-	else 
+	else if (GetBalance() + m_overdraftOverBalance >= withdrawAmmount) 
 	{
 		double moneyLack = withdrawAmmount - GetBalance();
 
 		DecreaseOverdraft(moneyLack);
 		DecreaseBalance(withdrawAmmount - moneyLack);
+	}
+
+	// if balance plus overdraft is not enough to cover the withdraw
+	else 
+	{
+		throw std::exception("error : not enough balace to finish withdraw");
 	}
 }
 
@@ -129,8 +125,6 @@ void PrivilegeAccount::DisplayAccount() const
 	std::cout << *this << '\n';
 }
 
-
-// friend methods
 std::ostream& operator<<(std::ostream& outStream, const PrivilegeAccount& privilegedAccount)
 {
 	outStream << "account type : Privileged Account\n"

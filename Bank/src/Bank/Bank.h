@@ -30,7 +30,7 @@ public:
 	const std::string GetName() const;
 	const std::string GetAddress() const;
 
-	void AddCustomer(const std::string& customerName, const std::string& customerAddress);
+	void AddCustomer(Customer* customer);
 	void DeleteCustomer(const std::string& customerID);
 
 	void AddAccount(const std::string& ownerID, const AccountType accountType);

@@ -18,7 +18,7 @@ public:
 	void PrintCustomers() const;
 	void PrintCustomerDetails(const std::string& customerID) const;
 
-	void AddCustomer(const std::string& customerName, const std::string& customerAddress);
+	void AddCustomer(Customer* customer);
 	void DeleteCustomer(const std::string& customerID);
 	void Clear();
 

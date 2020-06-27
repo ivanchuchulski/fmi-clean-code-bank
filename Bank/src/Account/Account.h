@@ -12,7 +12,7 @@
 class Account 
 {
 public:
-	Account() = delete;
+	Account();
 	Account(const Account& other) = default;
 	Account(const std::string& ownerID);
 	Account(const std::string& ownerID, double initialDeposit);

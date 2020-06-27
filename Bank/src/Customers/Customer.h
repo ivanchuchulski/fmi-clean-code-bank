@@ -11,7 +11,7 @@
 class Customer 
 {
 public:
-	Customer() = default;
+	Customer();
 	Customer(const Customer& other) = default;
 	Customer(const std::string& name, const std::string& address);
 
@@ -32,6 +32,8 @@ public:
 	void DisplayCustomerInfo() const;
 
 	Customer inputCustomer();
+
+	bool Equals(Customer& other);
 
 	// friend methods
 	friend std::ostream& operator<<(std::ostream& outStr, const Customer& customer);

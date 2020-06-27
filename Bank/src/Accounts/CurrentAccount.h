@@ -5,11 +5,10 @@
 
 #include "Account/Account.h"
 
-class CurrentAccount 
-	:	public Account
+class CurrentAccount : public Account
 {
 public:
-	CurrentAccount() = delete;
+	CurrentAccount();
 	CurrentAccount(const CurrentAccount& other);
 	CurrentAccount(const std::string& ownerID);
 	CurrentAccount(const std::string& ownerID, double initialDeposit);
@@ -28,7 +27,7 @@ public:
 	virtual void Withdraw(double withdrawAmmount) override;
 	virtual void DisplayAccount() const override;
 
-	// friend methods
+	
 	friend std::ostream& operator<<(std::ostream& outStream, const CurrentAccount& currentAccount);
 	friend std::istream& operator>>(std::istream& inStream, CurrentAccount& currentAccount);
 };

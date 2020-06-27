@@ -25,20 +25,69 @@ OptionCode ConsoleInterface::GetOption()
 	} while (true);
 }
 
-Customer ConsoleInterface::InputCustomerDetails()
+
+std::string ConsoleInterface::InputCustomerID()
 {
-	std::string	customerName;
-	std::string	customerAddress;
+	std::string	customerID;
+
+	IgnoreWhitespaces();
+
+	std::cout << "enter customer id : ";
+	customerID = InputString();
+
+	return customerID;
+}
+
+std::string ConsoleInterface::InputCustomerName()
+{
+	std::string	custmerName;
 
 	IgnoreWhitespaces();
 
 	std::cout << "enter customer name : ";
-	customerName = InputString();
+	custmerName = InputString();
+
+	return custmerName;
+}
+
+std::string ConsoleInterface::InputCustomerAddress()
+{
+	std::string	customerAddress;
+
+	IgnoreWhitespaces();
 
 	std::cout << "enter customer address : ";
 	customerAddress = InputString();
 
-	return Customer(customerName, customerAddress);
+	return customerAddress;
+}
+
+AccountType ConsoleInterface::InputAccountType()
+{
+	int accountTypeAsInt;
+
+	IgnoreWhitespaces();
+
+	std::cout << "enter account type : ";
+	std::cin >> accountTypeAsInt;
+
+	return static_cast<AccountType>(accountTypeAsInt);
+}
+
+std::string ConsoleInterface::InputAccountIBAN()
+{
+	return std::string();
+}
+
+double ConsoleInterface::InputMoneyAmmount()
+{
+	return 0.0;
+}
+
+void ConsoleInterface::PrintException(const std::exception& exception)
+{
+	std::cerr << "error from console interface\n";
+	std::cerr << exception.what();
 }
 
 // private methods

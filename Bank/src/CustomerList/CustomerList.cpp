@@ -36,9 +36,9 @@ void CustomerList::PrintCustomerDetails(const std::string& customerID) const
 	customerPosition->DisplayCustomerInfo();
 }
 
-void CustomerList::AddCustomer(const std::string& customerName, const std::string& customerAddress)
+void CustomerList::AddCustomer(Customer* customer)
 {
-	m_customers.emplace_back(Customer(customerName, customerAddress));
+	m_customers.emplace_back(*customer);
 }
 
 void CustomerList::DeleteCustomer(const std::string& customerID)

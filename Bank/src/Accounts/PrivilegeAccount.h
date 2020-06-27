@@ -5,11 +5,10 @@
 
 #include "Account/Account.h"
 
-class PrivilegeAccount 
-	: public Account
+class PrivilegeAccount : public Account
 {
 public:
-	PrivilegeAccount() = delete;
+	PrivilegeAccount();
 	PrivilegeAccount(const PrivilegeAccount& other) = default;
 	PrivilegeAccount(const std::string& ownerID);
 	PrivilegeAccount(const std::string& ownerID, double initialDeposit, double overdraft);

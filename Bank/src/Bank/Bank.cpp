@@ -58,17 +58,17 @@ const std::string Bank::GetAddress() const
 	return std::string(m_bankAddress);
 }
 
-void Bank::AddCustomer(const std::string& customerName, const std::string& customerAddress)
+void Bank::AddCustomer(Customer* customer)
 {
 	try
 	{
-		m_customerList.AddCustomer(customerName, customerAddress);
+		m_customerList.AddCustomer(customer);
 
-		std::cout << "success : customer " << customerName << " added\n";
+		std::cout << "success : added customer : \n" << *customer;
 	}
-	catch (const std::exception& exception)
+	catch (std::exception& exception)
 	{
-		std::cout << exception.what();
+		throw;
 	}
 }
 
@@ -84,7 +84,7 @@ void Bank::DeleteCustomer(const std::string& customerID)
 	}
 	catch (const std::exception& exception)
 	{
-		std::cout << exception.what();
+		throw;
 	}
 }
 

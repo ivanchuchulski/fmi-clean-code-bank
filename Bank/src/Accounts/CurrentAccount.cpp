@@ -1,7 +1,11 @@
 #include "CurrentAccount.h"
 #include <exception>
 
-//
+
+CurrentAccount::CurrentAccount()
+	: Account()
+{}
+
 CurrentAccount::CurrentAccount(const CurrentAccount& other)
 	:	Account(other)
 {}
@@ -15,8 +19,7 @@ CurrentAccount::CurrentAccount(const std::string& ownerID, double initialDeposit
 	:	Account(ownerID, initialDeposit)
 {}
 
-
-CurrentAccount & CurrentAccount::operator=(const CurrentAccount & other)
+CurrentAccount& CurrentAccount::operator=(const CurrentAccount & other)
 {
 	if (this != &other) 
 	{
@@ -27,7 +30,7 @@ CurrentAccount & CurrentAccount::operator=(const CurrentAccount & other)
 }
 
 
-// virtual methods
+// virtual methods overrides
 void CurrentAccount::InputAccount(const std::string& ownerID)
 {
 	Account::InputAccount(ownerID);
@@ -65,7 +68,7 @@ void CurrentAccount::DisplayAccount() const
 	std::cout << *this << '\n';
 }
 
-// friend methods
+
 std::ostream& operator<<(std::ostream& outStream, const CurrentAccount& currentAccount)
 {
 

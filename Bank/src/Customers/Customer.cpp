@@ -4,11 +4,21 @@
 unsigned int Customer::M_ID_COUNTER = 0;
 const std::string Customer::M_ID_PREFIX= "#ID#";
 
+Customer::Customer()
+	:	m_id(Utils::GenerateNumberedStringWithPrefix(M_ID_PREFIX, M_ID_COUNTER)),
+		m_name(),
+		m_address()
+{
+	M_ID_COUNTER++;
+}
+
 Customer::Customer(const std::string& name, const std::string& address)
 	:	m_id(Utils::GenerateNumberedStringWithPrefix(M_ID_PREFIX, M_ID_COUNTER)),
 		m_name(name),
 		m_address(address)
-{}
+{
+	M_ID_COUNTER++;
+}
 
 
 // setters
@@ -66,6 +76,11 @@ Customer Customer::inputCustomer()
 	return Customer(name, address);
 }
 
+bool Customer::Equals(Customer& other)
+{
+	return m_id == other.m_id;
+}
+
 // friend methods
 std::ostream& operator<<(std::ostream& outStream, const Customer& customer)
 {
@@ -78,5 +93,17 @@ std::ostream& operator<<(std::ostream& outStream, const Customer& customer)
 
 std::istream& operator>>(std::istream& inStream, Customer& customer)
 {
+	std::string name;
+	std::string address;
+
+	std::cout << "enter customer name : ";
+	std::getline(std::cin, name);
+
+	std::cout << "enter customer address : ";
+	std::getline(std::cin, address);
+
+	customer.SetName(name);
+	customer.SetAddress(address);
+
 	return inStream;
 }
