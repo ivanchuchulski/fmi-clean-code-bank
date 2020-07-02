@@ -83,19 +83,22 @@ void ConsoleApplication::Start()
     std::cout << "exiting...\n";
 }
 
-Customer* ConsoleApplication::InputCustomerDetails()
-{
-    return nullptr;
-}
-
 void ConsoleApplication::AddCustomer()
 {
-    std::string customerAddress = consoleInterface.InputCustomerAddress();
-    std::string customerName = consoleInterface.InputCustomerName();
+    try
+    {
+        std::string customerAddress = consoleInterface.InputCustomerAddress();
+        std::string customerName = consoleInterface.InputCustomerName();
+        Customer* customer = new Customer(customerName, customerAddress);
 
-    Customer* customer = new Customer(customerName, customerAddress);
+        bank.AddCustomer(customer);
 
-    bank.AddCustomer(customer);
+        consoleInterface.DisplaySuccessMessege("customer addition success\n");
+    }
+    catch (const std::exception& exception)
+    {
+        consoleInterface.DisplayErrorMessege(exception.what());
+    }
 }
 
 void ConsoleApplication::DeleteCustomer()
@@ -105,16 +108,31 @@ void ConsoleApplication::DeleteCustomer()
         std::string customerID = consoleInterface.InputCustomerID();
 
         bank.DeleteCustomer(customerID);
+
+        consoleInterface.DisplaySuccessMessege("customer removal success!\n");
     }
     catch (const std::exception& exception)
     {
-        consoleInterface.PrintException(exception);
+        consoleInterface.DisplayErrorMessege(exception.what());
     }
-
 }
 
 void ConsoleApplication::AddAccount()
 {
+    try
+    {
+        std::string customerID = consoleInterface.InputCustomerID();
+        consoleInterface.PrintSupportedAccountTypes();
+        AccountType accountType = consoleInterface.InputAccountType();
+
+        bank.AddAccount(customerID, accountType);
+
+        consoleInterface.DisplaySuccessMessege("account addition success\n");
+    }
+    catch (const std::exception& exception)
+    {
+        consoleInterface.DisplayErrorMessege(exception.what());
+    }
 }
 
 void ConsoleApplication::DeleteAccount()
@@ -133,6 +151,7 @@ void ConsoleApplication::ListAllCustomersAccount()
 
 void ConsoleApplication::ListAccounts()
 {
+    bank.ListAccounts();
 }
 
 void ConsoleApplication::BankInformation()

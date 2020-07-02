@@ -16,6 +16,7 @@ OptionCode ConsoleInterface::GetOption()
 	{
 		int command;
 
+		std::cout << "\tyour choice : ";
 		std::cin >> command;
 
 		if (menu.IsValidOption(command)) {
@@ -82,6 +83,24 @@ std::string ConsoleInterface::InputAccountIBAN()
 double ConsoleInterface::InputMoneyAmmount()
 {
 	return 0.0;
+}
+
+void ConsoleInterface::PrintSupportedAccountTypes()
+{
+	std::cout << "Supported account types : \n";
+	std::cout << "Current Account : " << static_cast<int>(AccountType::CurrentAccount) << '\n';
+	std::cout << "Privilige Account : " << static_cast<int>(AccountType::PrivileAccount) << '\n';
+	std::cout << "Savings Account : " << static_cast<int>(AccountType::SavingsAccount) << '\n';
+}
+
+void ConsoleInterface::DisplaySuccessMessege(const std::string messege)
+{
+	std::cout << messege;
+}
+
+void ConsoleInterface::DisplayErrorMessege(const std::string messege)
+{
+	std::cerr << messege;
 }
 
 void ConsoleInterface::PrintException(const std::exception& exception)

@@ -63,8 +63,6 @@ void Bank::AddCustomer(Customer* customer)
 	try
 	{
 		m_customerList.AddCustomer(customer);
-
-		std::cout << "success : added customer : \n" << *customer;
 	}
 	catch (std::exception& exception)
 	{
@@ -79,8 +77,6 @@ void Bank::DeleteCustomer(const std::string& customerID)
 		m_customerList.DeleteCustomer(customerID);
 		
 		m_accountList.DeleteAllCustomersAccounts(customerID);
-
-		std::cout << "customer removal success!\n";
 	}
 	catch (const std::exception& exception)
 	{
@@ -94,23 +90,19 @@ void Bank::AddAccount(const std::string& customerID, const AccountType accountTy
 	{
 		if (NoRegisteredCustomers())
 		{
-			std::cout << "account addition failed : the bank has no customers\n";
-			return;
+			throw std::exception("account addition failed : the bank has no customers\n");
 		}
 
 		if (m_customerList.CustomerDoesNotExist(customerID))
 		{
-			std::cout << "account addition failed : the customer doesn't exist\n";
-			return;
+			throw std::exception("account addition failed : the customer owner doesn't exist\n");
 		}
 		
 		m_accountList.AddAccount(customerID, accountType);
-
-		std::cout << "account addition success\n";
 	}
 	catch (const std::exception& exception)
 	{
-		std::cout << exception.what();
+		throw;
 	}
 }
 

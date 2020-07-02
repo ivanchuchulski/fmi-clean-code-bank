@@ -25,6 +25,11 @@ public:
 	std::string InputAccountIBAN();
 	double InputMoneyAmmount();
 
+	void PrintSupportedAccountTypes();
+	
+	void DisplaySuccessMessege(const std::string messege);
+	void DisplayErrorMessege(const std::string messege);
+
 	void PrintException(const std::exception& exception);
 
 private:

@@ -13,8 +13,6 @@ public:
 	void Start();
 
 private:
-	Customer* InputCustomerDetails();
-	Account* InputAccountDetails();
 	void AddCustomer();
 	void DeleteCustomer();
 	void AddAccount();

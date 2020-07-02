@@ -24,8 +24,6 @@ AccountList& AccountList::operator=(const AccountList& other)
 	return *this;
 }
 
-
-
 void AccountList::AddAccount(const std::string& ownerID, const AccountType accountType)
 {
 	Account* temp = nullptr;
