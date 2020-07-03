@@ -35,6 +35,7 @@ public:
 private:
 	void IgnoreWhitespaces();
 	std::string InputString();
+	bool IsStringInteger(std::string& str);
 
 private:
 	Menu menu;

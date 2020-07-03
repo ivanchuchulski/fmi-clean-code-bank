@@ -1,4 +1,5 @@
 #include "ConsoleApplication/ConsoleApplication.h"
+#include <stdlib.h>
 
 
 ConsoleApplication::ConsoleApplication()
@@ -75,6 +76,7 @@ void ConsoleApplication::Start()
                 break;
 
             default:
+                consoleInterface.DisplayErrorMessege("error, wrong command, please try again\n");
                 break;
         }
 
