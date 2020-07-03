@@ -24,33 +24,9 @@ AccountList& AccountList::operator=(const AccountList& other)
 	return *this;
 }
 
-void AccountList::AddAccount(const std::string& ownerID, const AccountType accountType)
+void AccountList::AddAccount(Account* account)
 {
-	Account* temp = nullptr;
-
-	switch (accountType)
-	{
-		case AccountType::CurrentAccount:
-			temp = new CurrentAccount(ownerID);
-			break;
-
-		case AccountType::SavingsAccount:
-			temp = new SavingsAccount(ownerID);
-			break;
-
-		case AccountType::PrivileAccount:
-			temp = new PrivilegeAccount(ownerID);
-			break;
-
-		default:
-			throw std::exception("account addition failed : invalid account type\n");
-	}
-
-	//m_accounts.emplace_back(temp->CloneAccount());
-	//delete temp;
-
-	// or just that
-	m_accounts.emplace_back(temp);
+	m_accounts.emplace_back(account);
 }
 
 void AccountList::DeleteAccount(const std::string& IBAN)

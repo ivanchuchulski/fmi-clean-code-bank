@@ -17,7 +17,7 @@ public:
 	~AccountList();
 	AccountList& operator=(const AccountList& other);
 
-	void AddAccount(const std::string& ownerID, const AccountType accountType);
+	void AddAccount(Account* account);
 	void DeleteAccount(const std::string& IBAN);
 	void DeleteAllCustomersAccounts(const std::string& customerID);
 	void Clear();

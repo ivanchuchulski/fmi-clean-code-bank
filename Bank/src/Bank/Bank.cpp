@@ -84,7 +84,7 @@ void Bank::DeleteCustomer(const std::string& customerID)
 	}
 }
 
-void Bank::AddAccount(const std::string& customerID, const AccountType accountType)
+void Bank::AddAccount(Account* account)
 {
 	try
 	{
@@ -93,12 +93,12 @@ void Bank::AddAccount(const std::string& customerID, const AccountType accountTy
 			throw std::exception("account addition failed : the bank has no customers\n");
 		}
 
-		if (m_customerList.CustomerDoesNotExist(customerID))
+		if (m_customerList.CustomerDoesNotExist(account->GetOwnerID()))
 		{
 			throw std::exception("account addition failed : the customer owner doesn't exist\n");
 		}
 		
-		m_accountList.AddAccount(customerID, accountType);
+		m_accountList.AddAccount(account);
 	}
 	catch (const std::exception& exception)
 	{

@@ -33,7 +33,7 @@ public:
 	void AddCustomer(Customer* customer);
 	void DeleteCustomer(const std::string& customerID);
 
-	void AddAccount(const std::string& ownerID, const AccountType accountType);
+	void AddAccount(Account* account);
 	void DeleteAccount(const std::string& iban);
 
 	void Transfer(const std::string& fromIBAN, const std::string& toIBAN, double ammount);

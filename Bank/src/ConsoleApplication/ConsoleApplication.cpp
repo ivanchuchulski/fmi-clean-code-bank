@@ -1,4 +1,5 @@
 #include "ConsoleApplication/ConsoleApplication.h"
+#include "AccountFactory/AccountFactory.h"
 #include <stdlib.h>
 
 
@@ -127,7 +128,9 @@ void ConsoleApplication::AddAccount()
         consoleInterface.PrintSupportedAccountTypes();
         AccountType accountType = consoleInterface.InputAccountType();
 
-        bank.AddAccount(customerID, accountType);
+        Account* account = AccountFactory::CreateAccount(accountType, customerID);
+
+        bank.AddAccount(account);
 
         consoleInterface.DisplaySuccessMessege("account addition success\n");
     }
