@@ -17,19 +17,13 @@ public:
 
 	CurrentAccount& operator=(const CurrentAccount& other);
 
-	// virtual methods
-	virtual void InputAccount(const std::string& ownerID) override;
-
-	// pure virtual mehtods 
-	virtual int GetAccountType() const override;
-	virtual Account* CloneAccount() const override;
 	virtual void Deposit(double depositAmmount) override;
 	virtual void Withdraw(double withdrawAmmount) override;
 	virtual void DisplayAccount() const override;
+	virtual int GetAccountType() const override;
+	virtual Account* CloneAccount() const override;
 
-	
 	friend std::ostream& operator<<(std::ostream& outStream, const CurrentAccount& currentAccount);
-	friend std::istream& operator>>(std::istream& inStream, CurrentAccount& currentAccount);
 };
 
 #endif // !CURRENT_ACCOUNT_H

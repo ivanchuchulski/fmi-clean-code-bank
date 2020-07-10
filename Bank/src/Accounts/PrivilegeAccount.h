@@ -13,28 +13,21 @@ public:
 	PrivilegeAccount(const std::string& ownerID);
 	PrivilegeAccount(const std::string& ownerID, double initialDeposit, double overdraft);
 
-	virtual ~PrivilegeAccount();
+	virtual ~PrivilegeAccount() = default;
 
 	PrivilegeAccount& operator=(const PrivilegeAccount& other);
 
-	// getters
 	const double GetOverdraft() const;
 
-	// setters
 	void IncreaseOverdraft(double overdraftIncrease);
 	void DecreaseOverdraft(double overdraftDecrease);
 
-	// virtual methods
-	virtual void InputAccount(const std::string& ownerID) override;
-
-	// pure virtual mehtods overrides
+	virtual void Deposit(double depositAmmount) override;
+	virtual void Withdraw(double withdrawAmmount) override;
+	virtual void DisplayAccount() const override;
 	virtual int GetAccountType() const override;
 	virtual Account* CloneAccount() const override;
-	virtual void Deposit(double depositAmmount) override;
-	virtual void  Withdraw(double withdrawAmmount) override;
-	virtual void DisplayAccount() const override;
 
-	// friend methods
 	friend std::ostream& operator<<(std::ostream& outStream, const PrivilegeAccount& somePrivilAcc);
 
 private:

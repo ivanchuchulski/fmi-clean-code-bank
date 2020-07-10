@@ -8,7 +8,6 @@
 
 #include "AccountType/AccountType.h"
 
-
 class Account 
 {
 public:
@@ -21,34 +20,24 @@ public:
 
 	Account& operator=(const Account& other) = default;
 
-	// getters
 	const double GetBalance() const;
 	const std::string GetOwnerID() const;
 	const std::string GetAccountIBAN() const;
 
-	// setters
 	void SetOwnerID(const std::string& ownerID);
 	void SetIBAN(const std::string& iban);
 
 	bool AccountOwnedByCustomer(const std::string& customerID) const;
 
-	// virtual methods
-	virtual void InputAccount(const std::string& ownerID);
-
-	// pure virtual methods
-	virtual int GetAccountType() const = 0;
-	virtual Account* CloneAccount() const = 0;
 	virtual void Deposit(double depositAmmount) = 0;
 	virtual void Withdraw(double withdrawAmmount) = 0;
 	virtual void DisplayAccount() const = 0;
+	virtual int GetAccountType() const = 0;
+	virtual Account* CloneAccount() const = 0;
 
-
-	// friend methods
 	friend std::ostream& operator<<(std::ostream& outStream, const Account& account);
-	friend std::istream& operator>>(std::istream& inStream, Account& account);
 
 protected:
-	// modifiers
 	void IncreaseBalance(double increase);
 	void DecreaseBalance(double decrease);
 

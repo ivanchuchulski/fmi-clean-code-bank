@@ -19,23 +19,18 @@ public:
 
 	Customer& operator=(const Customer& other) = default;
 
-	// setters
 	void SetID(const std::string& id);
 	void SetName(const std::string& name);
 	void SetAddress(const std::string& address);
 
-	// getters
 	const std::string GetID() const;
 	const std::string GetName() const;
 	const std::string GetAddress() const;
 
 	void DisplayCustomerInfo() const;
 
-	Customer inputCustomer();
-
 	bool Equals(Customer& other);
 
-	// friend methods
 	friend std::ostream& operator<<(std::ostream& outStr, const Customer& customer);
 	friend std::istream& operator>>(std::istream& inStr, Customer& customer);
 

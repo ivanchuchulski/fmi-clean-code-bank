@@ -10,7 +10,7 @@ public:
 	SavingsAccount(const std::string& ownerID);
 	SavingsAccount(const std::string& ownerID, double initialDeposit, float yearlyInterestProcent);
 
-	virtual ~SavingsAccount();
+	virtual ~SavingsAccount() = default;
 
 	SavingsAccount& operator=(const SavingsAccount& other);
 
@@ -19,15 +19,11 @@ public:
 	void IncreaseInterest(float interestIncrease);
 	void DecreaseInterest(float interestDecrease);
 
-	// virtual methods
-	virtual void InputAccount(const std::string& ownerID) override;
-
-	// pure virtual mehtods
-	virtual int GetAccountType() const override;
-	virtual Account* CloneAccount() const override;
 	virtual void Deposit(double depositAmmount) override;
 	virtual void Withdraw(double withdrawAmmount) override;
 	virtual void DisplayAccount() const override;
+	virtual int GetAccountType() const override;
+	virtual Account* CloneAccount() const override;
 
 	friend std::ostream& operator<<(std::ostream& outStream, const SavingsAccount& savingsAccount);
 

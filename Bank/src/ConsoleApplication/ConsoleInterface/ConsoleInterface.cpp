@@ -103,8 +103,8 @@ void ConsoleInterface::PrintSupportedAccountTypes()
 {
 	std::cout << "Supported account types : \n";
 	std::cout << "Current Account : " << static_cast<int>(AccountType::CurrentAccount) << '\n';
-	std::cout << "Privilige Account : " << static_cast<int>(AccountType::PrivileAccount) << '\n';
 	std::cout << "Savings Account : " << static_cast<int>(AccountType::SavingsAccount) << '\n';
+	std::cout << "Privilige Account : " << static_cast<int>(AccountType::PrivileAccount) << '\n';
 }
 
 void ConsoleInterface::DisplaySuccessMessege(const std::string messege)

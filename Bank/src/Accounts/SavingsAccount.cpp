@@ -19,9 +19,6 @@ SavingsAccount::SavingsAccount(const std::string& ownerID, double initialDeposit
 		m_yearlyInterestProcent((yearlyInterestProcent >= 0.0f && yearlyInterestProcent <= 100.0f) ? yearlyInterestProcent : M_YEARLY_INTEREST_DEFAULT)
 {}
 
-SavingsAccount::~SavingsAccount()
-{}
-
 SavingsAccount& SavingsAccount::operator=(const SavingsAccount& other)
 {
 	if (this != &other) 
@@ -42,14 +39,14 @@ void SavingsAccount::IncreaseInterest(float interestIncrease)
 {
 	if (interestIncrease < 0)
 	{
-		throw std::exception("error : interest increase can not be negative");
+		throw std::exception("error : interest increase can\'t be negative");
 	}
 
 	float increasedInterest = m_yearlyInterestProcent + interestIncrease;
 
 	if (increasedInterest > 100)
 	{
-		return;
+		throw std::exception("error : interest can\'t become more than 100%");
 	}
 
 	m_yearlyInterestProcent = increasedInterest;
@@ -59,40 +56,17 @@ void SavingsAccount::DecreaseInterest(float interestDecrease)
 {
 	if (interestDecrease < 0)
 	{
-		throw std::exception("error : interest decrease can not be negative");
+		throw std::exception("error : interest decrease can\'t be negative");
 	}
 
 	float decreasedInterest = m_yearlyInterestProcent - interestDecrease;
 	
 	if (decreasedInterest < 0)
 	{
-		throw std::exception("error : interest can not be negative");
-
+		throw std::exception("error : interest can\'t become less than 0%");
 	}
 
 	m_yearlyInterestProcent = decreasedInterest;
-}
-
-
-// virtual methods
-void SavingsAccount::InputAccount(const std::string& ownerID)
-{
-	Account::InputAccount(ownerID);
-
-	std::cout << "enter yealy interest : ";
-	std::cin >> m_yearlyInterestProcent;
-}
-
-
-// pure virtual mehtods overrides
-int SavingsAccount::GetAccountType() const
-{
-	return static_cast<int>(AccountType::SavingsAccount);
-}
-
-Account* SavingsAccount::CloneAccount() const
-{
-	return new SavingsAccount(*this);
 }
 
 void SavingsAccount::Deposit(double depositAmmount)
@@ -104,7 +78,7 @@ void SavingsAccount::Withdraw(double withdrawAmmount)
 {
 	if (GetBalance() < withdrawAmmount) 
 	{
-		throw std::exception("error : not enough balace to finish withdraw");
+		throw std::exception("error : not enough balance to finish withdraw");
 	}
 
 	DecreaseBalance(withdrawAmmount);
@@ -115,7 +89,16 @@ void SavingsAccount::DisplayAccount() const
 	std::cout << *this << '\n';
 }
 
-// friend methods
+int SavingsAccount::GetAccountType() const
+{
+	return static_cast<int>(AccountType::SavingsAccount);
+}
+
+Account* SavingsAccount::CloneAccount() const
+{
+	return new SavingsAccount(*this);
+}
+
 std::ostream& operator<<(std::ostream& outStream, const SavingsAccount& savingsAccount)
 {
 	outStream << "account type : Savings Account\n" 

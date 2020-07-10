@@ -20,8 +20,6 @@ Customer::Customer(const std::string& name, const std::string& address)
 	M_ID_COUNTER++;
 }
 
-
-// setters
 void Customer::SetID(const std::string & id)
 {
 	m_id = id;
@@ -37,8 +35,6 @@ void Customer::SetAddress(const std::string & address)
 	m_address = address;
 }
 
-
-// getters
 const std::string Customer::GetID() const
 {
 	return std::string(m_id);
@@ -55,25 +51,9 @@ const std::string Customer::GetAddress() const
 }
 
 
-
 void Customer::DisplayCustomerInfo() const
 {
 	std::cout << (*this);
-}
-
-
-Customer Customer::inputCustomer()
-{
-	std::string name;
-	std::string address;
-
-	std::cout << "enter customer name : ";
-	std::getline(std::cin, name);
-
-	std::cout << "enter customer address : ";
-	std::getline(std::cin, address);
-
-	return Customer(name, address);
 }
 
 bool Customer::Equals(Customer& other)

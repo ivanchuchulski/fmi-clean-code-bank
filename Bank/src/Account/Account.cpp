@@ -1,11 +1,9 @@
 #include "Account.h"
-
 #include "Utils/Utils.h"
 
-
+// static members initialization
 unsigned int Account::M_IBAN_COUNTER = 0;
 std::string Account::M_IBAN_PREFIX = "#IBAN#";
-
 
 Account::Account()
 	:	m_balance(0.0),
@@ -31,7 +29,6 @@ Account::Account(const std::string& ownerID, double initialDeposit)
 	M_IBAN_COUNTER++;
 }
 
-
 void Account::IncreaseBalance(double increase)
 {
 	m_balance += increase;
@@ -41,7 +38,6 @@ void Account::DecreaseBalance(double decrease)
 {
 	m_balance -= decrease;
 }
-
 
 const double Account::GetBalance() const
 {
@@ -73,37 +69,11 @@ bool Account::AccountOwnedByCustomer(const std::string& customerID) const
 	return m_ownerID == customerID;
 }
 
-// virtual methods
-void Account::InputAccount(const std::string& ownerID)
-{
-	m_ownerID = ownerID;
-
-	std::cout << "enter balance : ";
-	std::cin >> m_balance;
-	std::cin.ignore();
-
-	std::cout << "enter account IBAN";
-	std::getline(std::cin, m_accountIBAN, '\n');
-}
-
-
-// friend methods
 std::ostream& operator<<(std::ostream& outStream, const Account& account)
 {
-	outStream << "balance : " << account.m_balance 
-				<< "\n\t" << "ownerID : " << account.m_ownerID 
-				<< "\n\t" << "IBAN : " << account.m_accountIBAN;
+	outStream << "balance : " << account.m_balance << '\n' 
+				<< "ownerID : " << account.m_ownerID  << '\n' 
+				<< "IBAN : " << account.m_accountIBAN;
 
 	return outStream;
-}
-
-std::istream& operator>>(std::istream& inStream, Account& account)
-{
-	inStream >> account.m_balance;
-	inStream.ignore();
-
-	std::getline(inStream, account.m_accountIBAN, '\n');
-	std::getline(inStream, account.m_accountIBAN, '\n');
-
-	return inStream;
 }

@@ -10,7 +10,6 @@ CurrentAccount::CurrentAccount(const CurrentAccount& other)
 	:	Account(other)
 {}
 
-
 CurrentAccount::CurrentAccount(const std::string& ownerID)
 	: Account(ownerID)
 {}
@@ -29,15 +28,37 @@ CurrentAccount& CurrentAccount::operator=(const CurrentAccount & other)
 	return *this;
 }
 
-
-// virtual methods overrides
-void CurrentAccount::InputAccount(const std::string& ownerID)
+void CurrentAccount::Deposit(double depositAmmount)
 {
-	Account::InputAccount(ownerID);
+	if (depositAmmount < 0) 
+	{
+		throw std::exception("error : deposit ammount can\'t be negative number");
+	}
+
+	IncreaseBalance(depositAmmount);
 }
 
+void CurrentAccount::Withdraw(double withdrawAmmount)
+{
+	if (withdrawAmmount < 0) 
+	{
+		throw std::exception("error : withdraw ammount can\'be negative number, it must be positive");
+	}
 
-// pure virtual mehtods overrides
+	if (GetBalance() < withdrawAmmount) 
+	{
+		throw std::exception("error : not enough balace to finish withdraw");
+	}
+
+
+	DecreaseBalance(withdrawAmmount);
+}
+
+void CurrentAccount::DisplayAccount() const
+{
+	std::cout << *this << '\n';
+}
+
 int CurrentAccount::GetAccountType() const
 {
 	return static_cast<int>(AccountType::CurrentAccount);
@@ -48,39 +69,11 @@ Account* CurrentAccount::CloneAccount() const
 	return new CurrentAccount(*this);
 }
 
-void CurrentAccount::Deposit(double depositAmmount)
-{
-	IncreaseBalance(depositAmmount);
-}
-
-void CurrentAccount::Withdraw(double withdrawAmmount)
-{
-	if (GetBalance() < withdrawAmmount) 
-	{
-		throw std::exception("error : not enough balace to finish withdraw");
-	}
-
-	DecreaseBalance(withdrawAmmount);
-}
-
-void CurrentAccount::DisplayAccount() const
-{
-	std::cout << *this << '\n';
-}
-
-
 std::ostream& operator<<(std::ostream& outStream, const CurrentAccount& currentAccount)
 {
+	outStream << "account type : Current Account\n";
 
-	outStream << "account type : Current Account\n" 
-				<< static_cast<const Account&>(currentAccount);
+	outStream << static_cast<const Account&>(currentAccount);
 
 	return outStream;
-}
-
-std::istream& operator>>(std::istream& inStream, CurrentAccount& currentAccount)
-{
-	inStream >> static_cast<Account&>(currentAccount);
-
-	return inStream;
 }
