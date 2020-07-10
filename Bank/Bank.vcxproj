@@ -153,16 +153,16 @@
   <ItemGroup>
     <ClInclude Include="src\AccountFactory\AccountFactory.h" />
     <ClInclude Include="src\AccountList\AccountList.h" />
+    <ClInclude Include="src\Accounts\CurrentAccount\CurrentAccount.h" />
     <ClInclude Include="src\ConsoleApplication\ConsoleApplication.h" />
     <ClInclude Include="src\ConsoleApplication\ConsoleInterface\ConsoleInterface.h" />
     <ClInclude Include="src\ConsoleApplication\ConsoleInterface\Menu\Menu.h" />
-    <ClInclude Include="src\ConsoleApplication\ConsoleInterface\Menu\OptionCode\OptionCode.h" />
+    <ClInclude Include="src\ConsoleApplication\ConsoleInterface\OptionCode\OptionCode.h" />
     <ClInclude Include="src\CustomerList\CustomerList.h" />
     <ClInclude Include="src\Account\Account.h" />
     <ClInclude Include="src\AccountType\AccountType.h" />
-    <ClInclude Include="src\Accounts\CurrentAccount.h" />
-    <ClInclude Include="src\Accounts\PrivilegeAccount.h" />
-    <ClInclude Include="src\Accounts\SavingsAccount.h" />
+    <ClInclude Include="src\Accounts\PriviligeAccount\PrivilegeAccount.h" />
+    <ClInclude Include="src\Accounts\SavingsAccount\SavingsAccount.h" />
     <ClInclude Include="src\Bank\Bank.h" />
     <ClInclude Include="src\Customers\Customer.h" />
     <ClInclude Include="src\Utils\Utils.h" />
@@ -170,14 +170,14 @@
   <ItemGroup>
     <ClCompile Include="src\AccountFactory\AccountFactory.cpp" />
     <ClCompile Include="src\AccountList\AccountList.cpp" />
+    <ClCompile Include="src\Accounts\CurrentAccount\CurrentAccount.cpp" />
     <ClCompile Include="src\ConsoleApplication\ConsoleApplication.cpp" />
     <ClCompile Include="src\ConsoleApplication\ConsoleInterface\ConsoleInterface.cpp" />
     <ClCompile Include="src\ConsoleApplication\ConsoleInterface\Menu\Menu.cpp" />
     <ClCompile Include="src\CustomerList\CustomerList.cpp" />
     <ClCompile Include="src\Account\Account.cpp" />
-    <ClCompile Include="src\Accounts\CurrentAccount.cpp" />
-    <ClCompile Include="src\Accounts\PrivilegeAccount.cpp" />
-    <ClCompile Include="src\Accounts\SavingsAccount.cpp" />
+    <ClCompile Include="src\Accounts\PriviligeAccount\PrivilegeAccount.cpp" />
+    <ClCompile Include="src\Accounts\SavingsAccount\SavingsAccount.cpp" />
     <ClCompile Include="src\Bank\Bank.cpp" />
     <ClCompile Include="src\Customers\Customer.cpp" />
     <ClCompile Include="src\main.cpp" />

@@ -4,9 +4,9 @@
 #define ACCOUNT_LIST_H
 
 #include "Account/Account.h"
-#include "Accounts/CurrentAccount.h"	
-#include "Accounts/SavingsAccount.h"
-#include "Accounts/PrivilegeAccount.h"
+#include "Accounts/CurrentAccount/CurrentAccount.h"	
+#include "Accounts/SavingsAccount/SavingsAccount.h"
+#include "Accounts/PriviligeAccount/PrivilegeAccount.h"
 #include <vector>
 
 class AccountList

@@ -1,12 +1,12 @@
 #pragma once
 
 #include "Menu/Menu.h"
-#include "Menu/OptionCode/OptionCode.h"
+#include "OptionCode/OptionCode.h"
 #include "Customers/Customer.h"
 #include "Account/Account.h"
-#include "Accounts/CurrentAccount.h"
-#include "Accounts/PrivilegeAccount.h"
-#include "Accounts/SavingsAccount.h"
+#include "Accounts/CurrentAccount/CurrentAccount.h"
+#include "Accounts/PriviligeAccount/PrivilegeAccount.h"
+#include "Accounts/SavingsAccount/SavingsAccount.h"
 
 class ConsoleInterface
 {

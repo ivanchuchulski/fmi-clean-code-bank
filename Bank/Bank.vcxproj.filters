@@ -15,15 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Accounts\CurrentAccount.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Accounts\PrivilegeAccount.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Accounts\SavingsAccount.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Bank\Bank.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -54,23 +45,23 @@
     <ClInclude Include="src\ConsoleApplication\ConsoleInterface\Menu\Menu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\ConsoleApplication\ConsoleInterface\Menu\OptionCode\OptionCode.h">
+    <ClInclude Include="src\AccountFactory\AccountFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\AccountFactory\AccountFactory.h">
+    <ClInclude Include="src\Accounts\CurrentAccount\CurrentAccount.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Accounts\PriviligeAccount\PrivilegeAccount.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Accounts\SavingsAccount\SavingsAccount.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConsoleApplication\ConsoleInterface\OptionCode\OptionCode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Accounts\CurrentAccount.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Accounts\PrivilegeAccount.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Accounts\SavingsAccount.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Bank\Bank.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -102,6 +93,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\AccountFactory\AccountFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Accounts\CurrentAccount\CurrentAccount.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Accounts\PriviligeAccount\PrivilegeAccount.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Accounts\SavingsAccount\SavingsAccount.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
