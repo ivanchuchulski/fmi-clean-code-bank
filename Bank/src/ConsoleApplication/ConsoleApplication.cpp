@@ -124,11 +124,11 @@ void ConsoleApplication::AddAccount()
 {
     try
     {
-        std::string customerID = consoleInterface.InputCustomerID();
+        std::string accountOwnerID = consoleInterface.InputCustomerID();
         consoleInterface.PrintSupportedAccountTypes();
         AccountType accountType = consoleInterface.InputAccountType();
 
-        Account* account = AccountFactory::CreateAccount(accountType, customerID);
+        Account* account = AccountFactory::CreateAccount(accountType, accountOwnerID);
 
         bank.AddAccount(account);
 
@@ -142,6 +142,19 @@ void ConsoleApplication::AddAccount()
 
 void ConsoleApplication::DeleteAccount()
 {
+    try
+    {
+        std::string accountIBAN;
+        accountIBAN = consoleInterface.InputAccountIBAN();
+
+        bank.DeleteAccount(accountIBAN);
+
+        consoleInterface.DisplaySuccessMessege("account removal success!\n");
+    }
+    catch (const std::exception& exception)
+    {
+        consoleInterface.DisplayErrorMessege(exception.what());
+    }
 }
 
 void ConsoleApplication::ListCustomers()

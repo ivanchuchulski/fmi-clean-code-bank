@@ -102,7 +102,7 @@ void Bank::AddAccount(Account* account)
 	}
 	catch (const std::exception& exception)
 	{
-		throw;
+		throw; 
 	}
 }
 
@@ -112,17 +112,14 @@ void Bank::DeleteAccount(const std::string& accountIBAN)
 	{
 		if (NoRegisteredCustomers())
 		{
-			std::cout << "account removal failed : the bank has no customers\n";
-			return;
+			throw std::exception("account removal failed : the bank has no customers\n");
 		}
 
 		m_accountList.DeleteAccount(accountIBAN);
-
-		std::cout << "account removal success\n";
 	}
 	catch (const std::exception& exception)
 	{
-		std::cout << exception.what();
+		throw;
 	}
 }
 

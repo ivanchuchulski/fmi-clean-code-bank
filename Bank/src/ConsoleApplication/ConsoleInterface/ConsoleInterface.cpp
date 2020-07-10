@@ -4,19 +4,19 @@ ConsoleInterface::ConsoleInterface()
 	:	menu()
 {}
 
-
 void ConsoleInterface::DisplayMenu()
 {
 	menu.ShowMenu();
 }
 
+// TODO : rewrite this method to use GetIntegerFromString, i.e. must rethrow exception
 OptionCode ConsoleInterface::GetOption()
 {
 	do
 	{
 		std::string line;
 
-		std::cout << "\tyour choice : ";
+		std::cout << "your choice : ";
 		line = InputString();
 
 		char* end;
@@ -40,63 +40,60 @@ OptionCode ConsoleInterface::GetOption()
 	} while (true);
 }
 
-
 std::string ConsoleInterface::InputCustomerID()
 {
-	std::string	customerID;
-
-	IgnoreWhitespaces();
-
 	std::cout << "enter customer id : ";
-	customerID = InputString();
 
-	return customerID;
+	return InputString();
 }
 
 std::string ConsoleInterface::InputCustomerName()
 {
-	std::string	custmerName;
-
-	IgnoreWhitespaces();
-
 	std::cout << "enter customer name : ";
-	custmerName = InputString();
 
-	return custmerName;
+	return InputString();
 }
 
 std::string ConsoleInterface::InputCustomerAddress()
 {
-	std::string	customerAddress;
-
-	IgnoreWhitespaces();
-
 	std::cout << "enter customer address : ";
-	customerAddress = InputString();
 
-	return customerAddress;
+	return InputString();
 }
 
 AccountType ConsoleInterface::InputAccountType()
 {
+	std::string inputLine;
 	int accountTypeAsInt;
 
-	IgnoreWhitespaces();
-
 	std::cout << "enter account type : ";
-	std::cin >> accountTypeAsInt;
+
+	inputLine = InputString();
+
+	accountTypeAsInt = GetIntegerFromString(inputLine);
 
 	return static_cast<AccountType>(accountTypeAsInt);
 }
 
 std::string ConsoleInterface::InputAccountIBAN()
 {
-	return std::string();
+	std::cout << "enter account IBAN : ";
+
+	return InputString();
 }
 
 double ConsoleInterface::InputMoneyAmmount()
 {
-	return 0.0;
+	std::string inputLine;
+	double moneyAmmount;
+
+	std::cout << "enter account type : ";
+
+	inputLine = InputString();
+
+	moneyAmmount = GetDoubleFromString(inputLine);
+
+	return moneyAmmount;
 }
 
 void ConsoleInterface::PrintSupportedAccountTypes()
@@ -117,12 +114,6 @@ void ConsoleInterface::DisplayErrorMessege(const std::string messege)
 	std::cerr << messege;
 }
 
-void ConsoleInterface::PrintException(const std::exception& exception)
-{
-	std::cerr << "error from console interface\n";
-	std::cerr << exception.what();
-}
-
 // private methods
 void ConsoleInterface::IgnoreWhitespaces()
 {
@@ -140,7 +131,7 @@ std::string ConsoleInterface::InputString()
 	return str;
 }
 
-bool ConsoleInterface::IsStringInteger(std::string& str)
+int ConsoleInterface::GetIntegerFromString(std::string& str)
 {
 	const char* pointer = str.c_str();
 	char* end;
@@ -149,10 +140,23 @@ bool ConsoleInterface::IsStringInteger(std::string& str)
 	
 	if (*end)
 	{
-		return false;
+		throw std::exception("error : input must be integer");
 	}
-	else
+
+	return converted;
+}
+
+double ConsoleInterface::GetDoubleFromString(std::string& str)
+{
+	const char* pointer = str.c_str();
+	char* end;
+
+	double converted = std::strtod(pointer, &end);
+
+	if (*end)
 	{
-		return true;
+		throw std::exception("error : input must be double value");
 	}
+
+	return converted;
 }
