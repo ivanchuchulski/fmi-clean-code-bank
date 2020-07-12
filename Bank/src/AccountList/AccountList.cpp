@@ -64,6 +64,11 @@ void AccountList::Clear()
 	ClearAccounts();
 }
 
+bool AccountList::Empty() const
+{
+	return m_accounts.empty();
+}
+
 void AccountList::WithdrawFromAccount(const std::string& IBAN, double withdrawAmmount)
 {
 	try
@@ -87,39 +92,6 @@ void AccountList::DepositToAccount(const std::string& IBAN, double depotisAmmoun
 	catch (const std::exception & exception)
 	{
 		throw;
-	}
-}
-
-void AccountList::PrintAccounts() const
-{
-	if (NoOpenedAccounts())
-	{
-		throw std::exception("bank has no accounts opened\n");
-	}
-
-	std::cout << "printing bank accounts : \n";
-
-	for (const Account* account : m_accounts)
-	{
-		account->DisplayAccount();
-	}
-}
-
-void AccountList::PrintCustomerAccounts(const std::string& ownerID) const
-{
-	if (NoOpenedAccounts())
-	{
-		throw std::exception("bank has no accounts opened\n");
-	}
-
-	std::cout << "printing bank accounts : \n";
-
-	for (const Account* account : m_accounts)
-	{
-		if (account->AccountOwnedByCustomer(ownerID))
-		{
-			account->DisplayAccount();
-		}
 	}
 }
 
@@ -148,6 +120,26 @@ Account* AccountList::GetAccount(const std::string& IBAN)
 	msg.append("does not exist\n");
 
 	throw std::exception(msg.c_str());
+}
+
+account_iterator AccountList::begin()
+{
+	return m_accounts.begin();
+}
+
+account_iterator AccountList::end()
+{
+	return m_accounts.end();
+}
+
+account_const_iterator AccountList::begin() const
+{
+	return m_accounts.begin();
+}
+
+account_const_iterator AccountList::end() const
+{
+	return m_accounts.end();
 }
 
 // private helpers

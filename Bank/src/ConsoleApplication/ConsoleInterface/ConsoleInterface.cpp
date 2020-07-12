@@ -109,6 +109,11 @@ void ConsoleInterface::PrintCustomerDetails(const Customer& customer) const
 	std::cout << customer;
 }
 
+void ConsoleInterface::PrintAccountDetails(const Account* const account) const
+{
+	account->DisplayAccount(std::cout);
+}
+
 void ConsoleInterface::DisplaySuccessMessege(const std::string messege)
 {
 	std::cout << messege;

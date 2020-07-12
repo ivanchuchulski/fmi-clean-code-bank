@@ -159,9 +159,16 @@ void ConsoleApplication::DeleteAccount()
 
 void ConsoleApplication::ListCustomers()
 {
-    for (const auto& customer : bank.GetCustomerList())
+    try
     {
-        consoleInterface.PrintCustomerDetails(customer);
+        for (const Customer& customer : bank.GetCustomerList())
+        {
+            consoleInterface.PrintCustomerDetails(customer);
+        }
+    }
+    catch (const std::exception& exception)
+    {
+        consoleInterface.DisplayErrorMessege(exception.what());
     }
 }
 
@@ -169,10 +176,20 @@ void ConsoleApplication::ListAllCustomersAccount()
 {
 }
 
-
 void ConsoleApplication::ListAccounts()
 {
-    bank.ListAccounts();
+    try
+    {
+        for (const Account* const account : bank.GetAccountList())
+        {
+            consoleInterface.PrintAccountDetails(account);
+        }
+    }
+    catch (const std::exception& exception)
+    {
+        consoleInterface.DisplayErrorMessege(exception.what());
+    }
+
 }
 
 void ConsoleApplication::BankInformation()

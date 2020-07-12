@@ -54,9 +54,9 @@ void CurrentAccount::Withdraw(double withdrawAmmount)
 	DecreaseBalance(withdrawAmmount);
 }
 
-void CurrentAccount::DisplayAccount() const
+void CurrentAccount::DisplayAccount(std::ostream& outStream) const
 {
-	std::cout << *this << '\n';
+	outStream << *this << '\n';
 }
 
 int CurrentAccount::GetAccountType() const

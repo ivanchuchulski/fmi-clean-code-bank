@@ -27,6 +27,7 @@ public:
 
 	void PrintSupportedAccountTypes();
 	void PrintCustomerDetails(const Customer& customer) const;
+	void PrintAccountDetails(const Account* const account) const;
 	
 	void DisplaySuccessMessege(const std::string messege);
 	void DisplayErrorMessege(const std::string messege);

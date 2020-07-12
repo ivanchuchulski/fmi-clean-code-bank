@@ -84,7 +84,7 @@ void SavingsAccount::Withdraw(double withdrawAmmount)
 	DecreaseBalance(withdrawAmmount);
 }
 
-void SavingsAccount::DisplayAccount() const
+void SavingsAccount::DisplayAccount(std::ostream& outStream) const
 {
 	std::cout << *this << '\n';
 }

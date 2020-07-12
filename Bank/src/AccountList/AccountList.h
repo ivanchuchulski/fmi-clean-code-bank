@@ -7,6 +7,7 @@
 #include "Accounts/CurrentAccount/CurrentAccount.h"	
 #include "Accounts/SavingsAccount/SavingsAccount.h"
 #include "Accounts/PriviligeAccount/PrivilegeAccount.h"
+#include "AccountListIterators/AccountListIterators.h"
 #include <vector>
 
 class AccountList
@@ -22,12 +23,17 @@ public:
 	void DeleteAllCustomersAccounts(const std::string& customerID);
 	void Clear();
 
+	bool Empty() const;
+
 	void WithdrawFromAccount(const std::string& IBAN, double withdrawAmmount);
 	void DepositToAccount(const std::string& IBAN, double depotisAmmount);
 	
-	void PrintAccounts() const;
-	void PrintCustomerAccounts(const std::string& ownerID) const;
 	bool NoOpenedAccounts() const;
+
+	account_iterator begin();
+	account_iterator end();
+	account_const_iterator begin() const;
+	account_const_iterator end() const;
 
 private:
 	void ClearAccounts();

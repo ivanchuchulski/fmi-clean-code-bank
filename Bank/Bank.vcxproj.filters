@@ -63,6 +63,9 @@
     <ClInclude Include="src\CustomerListIterators\CustomerListIterators.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\AccountListIterators\AccountListIterators.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Bank\Bank.cpp">

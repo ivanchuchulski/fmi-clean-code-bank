@@ -40,16 +40,10 @@ public:
 	void DepositToAccount(const std::string& accountIBAN, double depositAmmount);
 	void WithdrawFromAccount(const std::string& accountIBAN, double withdrawAmmount);
 
-	void ListCustomers() const;
-	void ListAccounts() const;
-	void ListCustomerAccount(const std::string& customerID) const;
 	void PrintSupportedAccountTypes() const;
-	void DisplayBank() const;
 
 	const CustomerList& GetCustomerList();
-	// const AccountList::const_iterator GetAccountList();
-
-	friend std::ostream& operator<<(std::ostream& outStream, const Bank& bank);
+	const AccountList& GetAccountList();
 
 private:
 	void ClearBank();

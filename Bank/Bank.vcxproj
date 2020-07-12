@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\AccountFactory\AccountFactory.h" />
+    <ClInclude Include="src\AccountListIterators\AccountListIterators.h" />
     <ClInclude Include="src\AccountList\AccountList.h" />
     <ClInclude Include="src\Accounts\CurrentAccount\CurrentAccount.h" />
     <ClInclude Include="src\ConsoleApplication\ConsoleApplication.h" />

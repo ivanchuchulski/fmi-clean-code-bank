@@ -19,7 +19,7 @@ public:
 
 	virtual void Deposit(double depositAmmount) override;
 	virtual void Withdraw(double withdrawAmmount) override;
-	virtual void DisplayAccount() const override;
+	virtual void DisplayAccount(std::ostream& outStream) const override;
 	virtual int GetAccountType() const override;
 	virtual Account* CloneAccount() const override;
 

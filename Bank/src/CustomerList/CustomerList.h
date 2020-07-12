@@ -16,7 +16,6 @@ public:
 	~CustomerList() = default;
 	CustomerList& operator=(const CustomerList& other) = default;
 
-	void PrintCustomers() const;
 	void PrintCustomerDetails(const std::string& customerID) const;
 
 	void AddCustomer(Customer* customer);
@@ -26,10 +25,10 @@ public:
 	bool Empty() const;
 	bool CustomerDoesNotExist(const std::string& customerID) const;
 
-	iterator begin();
-	iterator end();
-	const_iterator begin() const;
-	const_iterator end() const;	
+	customer_iterator begin();
+	customer_iterator end();
+	customer_const_iterator begin() const;
+	customer_const_iterator end() const;
 	
 private:
 	std::vector<Customer>::const_iterator GetCustomerPosition(const std::string& customerID) const;

@@ -98,9 +98,9 @@ void PrivilegeAccount::Withdraw(double withdrawAmmount)
 	}
 }
 
-void PrivilegeAccount::DisplayAccount() const
+void PrivilegeAccount::DisplayAccount(std::ostream& outStream) const
 {
-	std::cout << *this << '\n';
+	outStream << *this << '\n';
 }
 
 int PrivilegeAccount::GetAccountType() const

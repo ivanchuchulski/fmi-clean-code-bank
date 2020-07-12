@@ -181,43 +181,6 @@ void Bank::WithdrawFromAccount(const std::string& accountIBAN, double withdrawAm
 	}
 }
 
-void Bank::ListCustomers() const
-{
-	try
-	{
-		m_customerList.PrintCustomers();
-	}
-	catch (const std::exception & exception)
-	{
-		std::cout << exception.what();
-	}
-}
-
-void Bank::ListAccounts() const
-{
-	try
-	{
-		m_accountList.PrintAccounts();
-	}
-	catch (const std::exception & exception)
-	{
-		std::cout << exception.what();
-	}
-}
-
-void Bank::ListCustomerAccount(const std::string& customerID) const
-{
-	try
-	{
-		m_customerList.PrintCustomerDetails(customerID);
-		m_accountList.PrintCustomerAccounts(customerID);
-	}
-	catch (const std::exception& exception)
-	{
-		std::cout << exception.what();
-	}
-}
-
 void Bank::PrintSupportedAccountTypes() const
 {
 	std::cout << static_cast<int>(AccountType::CurrentAccount) << " <-> CurrentAccount "
@@ -225,31 +188,30 @@ void Bank::PrintSupportedAccountTypes() const
 				<< static_cast<int>(AccountType::PrivileAccount) << " <-> Privileged Account\n";
 }
 
-void Bank::DisplayBank() const
-{
-	std::cout << *this << '\n';
-}
 
 const CustomerList& Bank::GetCustomerList()
 {
+	if (m_customerList.Empty())
+	{
+		throw std::exception("bank has no signed customers\n");
+	}
+
 	return m_customerList;
 }
 
-
-std::ostream& operator<<(std::ostream& outStream, const Bank& bank)
+const AccountList& Bank::GetAccountList()
 {
-	outStream << "\nBank " << bank.GetName() << " info : \n"
-		<< "\taddress : " << bank.GetAddress();
-	
-	outStream << '\n';
-	bank.ListCustomers();
+	if (m_customerList.Empty())
+	{
+		throw std::exception("bank has no signed customers and so there are no opened account\n");
+	}
 
-	outStream << '\n';
-	bank.ListAccounts();
+	if (m_accountList.Empty())
+	{
+		throw std::exception("bank has no opened accounts\n");
+	}
 
-	outStream << std::endl;
-
-	return outStream;
+	return m_accountList;
 }
 
 // private helper methods

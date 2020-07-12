@@ -4,22 +4,6 @@
 #include <exception>
 
 
-void CustomerList::PrintCustomers() const
-{
-	if (Empty())
-	{
-		throw std::exception("bank has no customers to display\n");
-	}
-
-	std::cout << "printing bank customers : \n";
-
-	for (const Customer& customer : m_customers)
-	{
-		customer.DisplayCustomerInfo();
-	}
-
-}
-
 void CustomerList::PrintCustomerDetails(const std::string& customerID) const
 {
 	if (Empty())
@@ -73,22 +57,22 @@ bool CustomerList::CustomerDoesNotExist(const std::string& customerID) const
 	return customerPosition == m_customers.end();
 }
 
-iterator CustomerList::begin()
+customer_iterator CustomerList::begin()
 {
 	return m_customers.begin();
 }
 
-iterator CustomerList::end()
+customer_iterator CustomerList::end()
 {
 	return m_customers.end();
 }
 
-const_iterator CustomerList::begin() const
+customer_const_iterator CustomerList::begin() const
 {
 	return m_customers.begin();
 }
 
-const_iterator CustomerList::end() const
+customer_const_iterator CustomerList::end() const
 {
 	return m_customers.end();
 }
