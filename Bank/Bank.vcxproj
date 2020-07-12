@@ -158,6 +158,7 @@
     <ClInclude Include="src\ConsoleApplication\ConsoleInterface\ConsoleInterface.h" />
     <ClInclude Include="src\ConsoleApplication\ConsoleInterface\Menu\Menu.h" />
     <ClInclude Include="src\ConsoleApplication\ConsoleInterface\OptionCode\OptionCode.h" />
+    <ClInclude Include="src\CustomerListIterators\CustomerListIterators.h" />
     <ClInclude Include="src\CustomerList\CustomerList.h" />
     <ClInclude Include="src\Account\Account.h" />
     <ClInclude Include="src\AccountType\AccountType.h" />

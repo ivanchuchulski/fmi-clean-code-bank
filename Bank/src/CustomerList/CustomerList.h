@@ -4,8 +4,9 @@
 #define CUSTOMER_LIST_H
 
 #include "Customers/Customer.h"
+#include "Account/Account.h"
 #include <vector>
-
+#include "CustomerListIterators/CustomerListIterators.h"
 
 class CustomerList
 {
@@ -24,6 +25,11 @@ public:
 
 	bool Empty() const;
 	bool CustomerDoesNotExist(const std::string& customerID) const;
+
+	iterator begin();
+	iterator end();
+	const_iterator begin() const;
+	const_iterator end() const;	
 	
 private:
 	std::vector<Customer>::const_iterator GetCustomerPosition(const std::string& customerID) const;

@@ -159,7 +159,10 @@ void ConsoleApplication::DeleteAccount()
 
 void ConsoleApplication::ListCustomers()
 {
-    bank.ListCustomers();
+    for (const auto& customer : bank.GetCustomerList())
+    {
+        consoleInterface.PrintCustomerDetails(customer);
+    }
 }
 
 void ConsoleApplication::ListAllCustomersAccount()

@@ -26,6 +26,7 @@ public:
 	double InputMoneyAmmount();
 
 	void PrintSupportedAccountTypes();
+	void PrintCustomerDetails(const Customer& customer) const;
 	
 	void DisplaySuccessMessege(const std::string messege);
 	void DisplayErrorMessege(const std::string messege);

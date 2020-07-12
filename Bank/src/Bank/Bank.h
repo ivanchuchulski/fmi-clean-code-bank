@@ -46,6 +46,9 @@ public:
 	void PrintSupportedAccountTypes() const;
 	void DisplayBank() const;
 
+	const CustomerList& GetCustomerList();
+	// const AccountList::const_iterator GetAccountList();
+
 	friend std::ostream& operator<<(std::ostream& outStream, const Bank& bank);
 
 private:

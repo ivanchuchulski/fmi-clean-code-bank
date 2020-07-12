@@ -104,6 +104,11 @@ void ConsoleInterface::PrintSupportedAccountTypes()
 	std::cout << "Privilige Account : " << static_cast<int>(AccountType::PrivileAccount) << '\n';
 }
 
+void ConsoleInterface::PrintCustomerDetails(const Customer& customer) const
+{
+	std::cout << customer;
+}
+
 void ConsoleInterface::DisplaySuccessMessege(const std::string messege)
 {
 	std::cout << messege;

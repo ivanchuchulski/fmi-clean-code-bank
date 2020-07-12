@@ -1,4 +1,5 @@
 #include "CustomerList/CustomerList.h"
+#include "CustomerListIterators/CustomerListIterators.h"
 
 #include <exception>
 
@@ -70,6 +71,26 @@ bool CustomerList::CustomerDoesNotExist(const std::string& customerID) const
 	auto customerPosition = GetCustomerPosition(customerID);
 
 	return customerPosition == m_customers.end();
+}
+
+iterator CustomerList::begin()
+{
+	return m_customers.begin();
+}
+
+iterator CustomerList::end()
+{
+	return m_customers.end();
+}
+
+const_iterator CustomerList::begin() const
+{
+	return m_customers.begin();
+}
+
+const_iterator CustomerList::end() const
+{
+	return m_customers.end();
 }
 
 // private helpers

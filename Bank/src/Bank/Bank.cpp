@@ -230,6 +230,11 @@ void Bank::DisplayBank() const
 	std::cout << *this << '\n';
 }
 
+const CustomerList& Bank::GetCustomerList()
+{
+	return m_customerList;
+}
+
 
 std::ostream& operator<<(std::ostream& outStream, const Bank& bank)
 {
