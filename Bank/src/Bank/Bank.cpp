@@ -214,6 +214,21 @@ const AccountList& Bank::GetAccountList()
 	return m_accountList;
 }
 
+const Customer& Bank::GetCustomerByID(std::string& customerID)
+{
+	if (m_customerList.Empty())
+	{
+		throw std::exception("bank has no signed customers and so there are no opened account\n");
+	}
+
+	if (m_customerList.CustomerDoesNotExist(customerID))
+	{
+		throw std::exception("no such customer exists\n");
+	}
+
+	return m_customerList.GetCustomerByID(customerID);
+}
+
 // private helper methods
 void Bank::ClearBank()
 {
@@ -238,5 +253,5 @@ bool Bank::NoRegisteredCustomers() const
 
 bool Bank::NoOpenedAccounts() const
 {
-	return m_accountList.NoOpenedAccounts();
+	return m_accountList.Empty();
 }

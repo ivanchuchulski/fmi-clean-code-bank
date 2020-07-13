@@ -1,25 +1,6 @@
 #include "CustomerList/CustomerList.h"
 #include "CustomerListIterators/CustomerListIterators.h"
-
 #include <exception>
-
-
-void CustomerList::PrintCustomerDetails(const std::string& customerID) const
-{
-	if (Empty())
-	{
-		throw std::exception("bank has no customers to display\n");
-	}
-
-	if (CustomerDoesNotExist(customerID))
-	{
-		throw std::exception("customer does not exist\n");
-	}
-
-	auto customerPosition = GetCustomerPosition(customerID);
-
-	customerPosition->DisplayCustomerInfo();
-}
 
 void CustomerList::AddCustomer(Customer* customer)
 {
@@ -57,6 +38,11 @@ bool CustomerList::CustomerDoesNotExist(const std::string& customerID) const
 	return customerPosition == m_customers.end();
 }
 
+const Customer& CustomerList::GetCustomerByID(const std::string& customerID) const
+{
+	return *GetCustomerPosition(customerID);
+}
+
 customer_iterator CustomerList::begin()
 {
 	return m_customers.begin();
@@ -77,8 +63,8 @@ customer_const_iterator CustomerList::end() const
 	return m_customers.end();
 }
 
-// private helpers
-std::vector<Customer>::const_iterator CustomerList::GetCustomerPosition(const std::string& customerID) const
+// private methods
+customer_const_iterator CustomerList::GetCustomerPosition(const std::string& customerID) const
 {
 	for (auto customer = m_customers.begin(); customer != m_customers.end(); ++customer) 
 	{

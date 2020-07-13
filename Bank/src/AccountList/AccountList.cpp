@@ -95,31 +95,28 @@ void AccountList::DepositToAccount(const std::string& IBAN, double depotisAmmoun
 	}
 }
 
-bool AccountList::NoOpenedAccounts() const
-{
-	return m_accounts.empty();
-}
-
 Account* AccountList::GetAccount(const std::string& IBAN)
 {
-	if (NoOpenedAccounts())
+	try
 	{
-		throw std::exception("error : no accounts opened");
+		return *GetAccountPosition(IBAN);
 	}
-
-	for (Account* account : m_accounts)
+	catch (const std::exception& exception)
 	{
-		if (account->GetAccountIBAN() == IBAN)
-		{
-			return account;
-		}
+		throw;
 	}
+}
 
-	std::string msg = "error : account with IBAN";
-	msg.append(IBAN);
-	msg.append("does not exist\n");
-
-	throw std::exception(msg.c_str());
+const Account* AccountList::GetAccount(const std::string& IBAN) const
+{
+	try
+	{
+		return *GetAccountPosition(IBAN);
+	}
+	catch (const std::exception & exception)
+	{
+		throw;
+	}
 }
 
 account_iterator AccountList::begin()
@@ -165,9 +162,31 @@ void AccountList::CopyAccounts(const std::vector<Account*>& otherAccounts)
 	}
 }
 
-std::vector<Account*>::const_iterator AccountList::GetAccountPosition(const std::string& IBAN) const
+account_iterator AccountList::GetAccountPosition(const std::string& IBAN)
 {
-	if (NoOpenedAccounts())
+	if (Empty())
+	{
+		throw std::exception("error : no accounts opened");
+	}
+
+	for (auto it = m_accounts.begin(); it != m_accounts.end(); ++it)
+	{
+		if ((*it)->GetAccountIBAN() == IBAN)
+		{
+			return it;
+		}
+	}
+
+	std::string msg = "error : account with IBAN ";
+	msg.append(IBAN);
+	msg.append(" does not exist\n");
+
+	throw std::exception(msg.c_str());
+}
+
+account_const_iterator AccountList::GetAccountPosition(const std::string& IBAN) const
+{
+	if (Empty())
 	{
 		throw std::exception("error : no accounts opened");
 	}

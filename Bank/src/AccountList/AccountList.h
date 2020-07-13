@@ -27,21 +27,22 @@ public:
 
 	void WithdrawFromAccount(const std::string& IBAN, double withdrawAmmount);
 	void DepositToAccount(const std::string& IBAN, double depotisAmmount);
-	
-	bool NoOpenedAccounts() const;
 
 	account_iterator begin();
 	account_iterator end();
 	account_const_iterator begin() const;
 	account_const_iterator end() const;
 
+	Account* GetAccount(const std::string& IBAN);
+	const Account* GetAccount(const std::string& IBAN) const;
+
 private:
 	void ClearAccounts();
 	void CopyAccounts(const std::vector<Account*>& otherAccounts);
 
-	std::vector<Account*>::const_iterator GetAccountPosition(const std::string& accountIBAN) const;
-	Account* GetAccount(const std::string& IBAN);
-
+	account_iterator GetAccountPosition(const std::string& accountIBAN);
+	account_const_iterator GetAccountPosition(const std::string& IBAN) const;
+	
 private:
 	std::vector<Account*> m_accounts;
 };

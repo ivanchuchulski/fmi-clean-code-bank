@@ -174,6 +174,26 @@ void ConsoleApplication::ListCustomers()
 
 void ConsoleApplication::ListAllCustomersAccount()
 {
+    try
+    {
+        std::string customerID = consoleInterface.InputCustomerID();
+
+        const Customer& customer = bank.GetCustomerByID(customerID);
+
+        consoleInterface.PrintCustomerDetails(customer);
+
+        for (const Account* const account : bank.GetAccountList())
+        {
+            if (account->AccountOwnedByCustomer(customer.GetID()))
+            {
+                consoleInterface.PrintAccountDetails(account);
+            }
+        }
+    }
+    catch (const std::exception & exception)
+    {
+        consoleInterface.DisplayErrorMessege(exception.what());
+    }
 }
 
 void ConsoleApplication::ListAccounts()
@@ -189,7 +209,6 @@ void ConsoleApplication::ListAccounts()
     {
         consoleInterface.DisplayErrorMessege(exception.what());
     }
-
 }
 
 void ConsoleApplication::BankInformation()

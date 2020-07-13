@@ -45,6 +45,8 @@ public:
 	const CustomerList& GetCustomerList();
 	const AccountList& GetAccountList();
 
+	const Customer& GetCustomerByID(std::string& customerID);
+
 private:
 	void ClearBank();
 	void CopyOtherBank(const Bank& otherBank);
