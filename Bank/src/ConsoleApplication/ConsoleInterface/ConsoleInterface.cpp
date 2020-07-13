@@ -87,7 +87,7 @@ double ConsoleInterface::InputMoneyAmmount()
 	std::string inputLine;
 	double moneyAmmount;
 
-	std::cout << "enter account type : ";
+	std::cout << "enter money ammount: ";
 
 	inputLine = InputString();
 

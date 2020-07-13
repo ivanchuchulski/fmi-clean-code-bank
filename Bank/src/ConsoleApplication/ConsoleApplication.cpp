@@ -217,12 +217,70 @@ void ConsoleApplication::BankInformation()
 
 void ConsoleApplication::Withdraw()
 {
+    try
+    {
+        std::string accountIBAN;
+        double withdrawAmmount;
+
+        consoleInterface.DisplaySuccessMessege("enter account IBAN to withdraw from\n");
+
+        accountIBAN = consoleInterface.InputAccountIBAN();
+        withdrawAmmount = consoleInterface.InputMoneyAmmount();
+
+        bank.WithdrawFromAccount(accountIBAN, withdrawAmmount);
+
+        consoleInterface.DisplaySuccessMessege("account withraw success\n");
+    }
+    catch (const std::exception& exception)
+    {
+        consoleInterface.DisplayErrorMessege(exception.what());
+    }
 }
 
 void ConsoleApplication::Deposit()
 {
+    try
+    {
+        std::string accountIBAN;
+        double depositAmmount;
+
+        consoleInterface.DisplaySuccessMessege("enter account IBAN to deposit\n");
+
+        accountIBAN = consoleInterface.InputAccountIBAN();
+        depositAmmount = consoleInterface.InputMoneyAmmount();
+
+        bank.DepositToAccount(accountIBAN, depositAmmount);
+
+        consoleInterface.DisplaySuccessMessege("account deposit success\n");
+    }
+    catch (const std::exception & exception)
+    {
+        consoleInterface.DisplayErrorMessege(exception.what());
+    }
 }
 
 void ConsoleApplication::Transfer()
 {
+    try
+    {
+        std::string depositerIBAN;
+        std::string withdrawerIBAN;
+        double transferAmmount;
+
+        consoleInterface.DisplaySuccessMessege("account transfer\n");
+
+        consoleInterface.DisplaySuccessMessege("enter account IBANs to withdraw from, to deposit to and the money ammount\n");
+
+        withdrawerIBAN = consoleInterface.InputAccountIBAN();
+        depositerIBAN = consoleInterface.InputAccountIBAN();
+        transferAmmount = consoleInterface.InputMoneyAmmount();
+
+        bank.Transfer(withdrawerIBAN, depositerIBAN, transferAmmount);
+
+        consoleInterface.DisplaySuccessMessege("accounts transfer success\n");
+    }
+    catch (const std::exception & exception)
+    {
+        consoleInterface.DisplayErrorMessege(exception.what());
+    }
 }

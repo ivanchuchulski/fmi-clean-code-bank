@@ -139,7 +139,7 @@ void Bank::Transfer(const std::string& fromIBAN, const std::string& toIBAN, doub
 	}
 	catch (const std::exception& exception)
 	{
-		std::cout << exception.what();
+		throw;
 	}
 }
 
@@ -149,16 +149,14 @@ void Bank::DepositToAccount(const std::string& accountIBAN, double depositAmmoun
 	{
 		if (NoRegisteredCustomers())
 		{
-			std::cout << "the bank has no customers\n";
-			return;
+			throw std::exception("the bank has no customers\n");
 		}
 
-		m_accountList.WithdrawFromAccount(accountIBAN, depositAmmount);
-		std::cout << "account deposit success\n";
+		m_accountList.DepositToAccount(accountIBAN, depositAmmount);
 	}
-	catch (const std::exception & exception)
+	catch (const std::exception& exception)
 	{
-		std::cout << exception.what();
+		throw;
 	}
 }
 
@@ -168,16 +166,14 @@ void Bank::WithdrawFromAccount(const std::string& accountIBAN, double withdrawAm
 	{
 		if (NoRegisteredCustomers())
 		{
-			std::cout << "the bank has no customers\n";
-			return;
+			throw std::exception("the bank has no customers\n");
 		}
 
 		m_accountList.WithdrawFromAccount(accountIBAN, withdrawAmmount);
-		std::cout << "account withdraw success\n";
 	}
 	catch (const std::exception& exception)
 	{
-		std::cout << exception.what();
+		throw;
 	}
 }
 
@@ -187,7 +183,6 @@ void Bank::PrintSupportedAccountTypes() const
 				<< static_cast<int>(AccountType::SavingsAccount) << " <-> Savings Account "
 				<< static_cast<int>(AccountType::PrivileAccount) << " <-> Privileged Account\n";
 }
-
 
 const CustomerList& Bank::GetCustomerList()
 {
