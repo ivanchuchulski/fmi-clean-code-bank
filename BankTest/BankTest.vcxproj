@@ -156,7 +156,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AccountTest.cpp" />
     <ClCompile Include="BankTest.cpp" />
+    <ClCompile Include="CustomerListTest.cpp" />
+    <ClCompile Include="CustomerTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bank\Bank.vcxproj">

@@ -1,39 +1,23 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 
-#include "ConsoleInput.h"
-#include "Customers/Customer.h"
-#include "Account/Account.h"
-#include "Accounts/CurrentAccount.h"
+#include "Bank/Bank.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace BankTest
 {
-	TEST_CLASS(AccountTest)
+	TEST_CLASS(BankTest)
 	{
 	public:
-		TEST_METHOD(TestAccountBalance)
+		TEST_METHOD(TestBankGetBankName)
 		{
-			std::string accountID = "123";
-			double balance = 100.0;
-			Account* account = new CurrentAccount(accountID, balance);
+			std::string bankName = "fib";
+			std::string bankAddress = "sofia";
 
-			Assert::AreEqual(100.0, account->GetBalance());
-		}
+			Bank bank = Bank(bankName, bankAddress);
 
-	};
-
-	TEST_CLASS(CustomerTest)
-	{
-	public:
-		TEST_METHOD(TestCustomerGetName)
-		{
-			std::string name = "boris";
-			std::string address = "sofia";
-			Customer* customer = new Customer(name, address);
-
-			Assert::AreEqual(name, customer->GetName());
+			Assert::AreEqual(bankName, bank.GetName());
 		}
 	};
 }
