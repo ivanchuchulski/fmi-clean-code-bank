@@ -21,7 +21,7 @@ public:
 	void Clear();
 
 	bool Empty() const;
-	bool CustomerDoesNotExist(const std::string& customerID) const;
+	bool CustomerExists(const std::string& customerID) const;
 
 	const Customer& GetCustomerByID(const std::string& customerID) const;
 

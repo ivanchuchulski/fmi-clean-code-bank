@@ -34,25 +34,13 @@ OptionCode ConsoleInterface::GetOption()
 	}
 }
 
-std::string ConsoleInterface::InputCustomerID()
+std::string ConsoleInterface::InputString()
 {
-	std::cout << "enter customer id : ";
+	std::string str;
 
-	return InputString();
-}
+	std::getline(std::cin, str);
 
-std::string ConsoleInterface::InputCustomerName()
-{
-	std::cout << "enter customer name : ";
-
-	return InputString();
-}
-
-std::string ConsoleInterface::InputCustomerAddress()
-{
-	std::cout << "enter customer address : ";
-
-	return InputString();
+	return str;
 }
 
 AccountType ConsoleInterface::InputAccountType()
@@ -67,13 +55,6 @@ AccountType ConsoleInterface::InputAccountType()
 	accountTypeAsInt = GetIntegerFromString(inputLine);
 
 	return static_cast<AccountType>(accountTypeAsInt);
-}
-
-std::string ConsoleInterface::InputAccountIBAN()
-{
-	std::cout << "enter account IBAN : ";
-
-	return InputString();
 }
 
 double ConsoleInterface::InputMoneyAmmount()
@@ -100,22 +81,23 @@ void ConsoleInterface::PrintSupportedAccountTypes()
 
 void ConsoleInterface::PrintCustomerDetails(const Customer& customer) const
 {
-	std::cout << customer;
+	std::cout << customer << '\n';
 }
 
 void ConsoleInterface::PrintAccountDetails(const Account* const account) const
 {
 	account->DisplayAccount(std::cout);
+	std::cout << '\n';
 }
 
-void ConsoleInterface::DisplaySuccessMessege(const std::string messege)
+void ConsoleInterface::DisplayMessage(const std::string messege)
 {
 	std::cout << messege;
 }
 
-void ConsoleInterface::DisplayErrorMessege(const std::string messege)
+void ConsoleInterface::DisplayErrorMessage(const std::string errorMessage)
 {
-	std::cerr << messege;
+	std::cerr << '\n' << errorMessage;
 }
 
 // private methods
@@ -124,15 +106,6 @@ void ConsoleInterface::IgnoreWhitespaces()
 	//std::cin.clear();
 	//std::cin.sync();
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-}
-
-std::string ConsoleInterface::InputString()
-{
-	std::string str;
-
-	std::getline(std::cin, str);
-
-	return str;
 }
 
 int ConsoleInterface::GetIntegerFromString(std::string& str)

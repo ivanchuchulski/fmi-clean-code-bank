@@ -31,11 +31,11 @@ bool CustomerList::Empty() const
 	return m_customers.empty();
 }
 
-bool CustomerList::CustomerDoesNotExist(const std::string& customerID) const
+bool CustomerList::CustomerExists(const std::string& customerID) const
 {
 	auto customerPosition = GetCustomerPosition(customerID);
 
-	return customerPosition == m_customers.end();
+	return customerPosition != m_customers.end();
 }
 
 const Customer& CustomerList::GetCustomerByID(const std::string& customerID) const

@@ -36,11 +36,9 @@ public:
 	void AddAccount(Account* account);
 	void DeleteAccount(const std::string& iban);
 
-	void Transfer(const std::string& fromIBAN, const std::string& toIBAN, double ammount);
+	void Transfer(const std::string& fromIBAN, const std::string& toIBAN, double transferAmmount);
 	void DepositToAccount(const std::string& accountIBAN, double depositAmmount);
 	void WithdrawFromAccount(const std::string& accountIBAN, double withdrawAmmount);
-
-	void PrintSupportedAccountTypes() const;
 
 	const CustomerList& GetCustomerList();
 	const AccountList& GetAccountList();

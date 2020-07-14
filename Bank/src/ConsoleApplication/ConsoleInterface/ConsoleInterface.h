@@ -17,24 +17,19 @@ public:
 	void DisplayMenu();
 	OptionCode GetOption();
 
-	std::string InputCustomerID();
-	std::string InputCustomerName();
-	std::string InputCustomerAddress();
-
+	std::string InputString();
 	AccountType InputAccountType();
-	std::string InputAccountIBAN();
 	double InputMoneyAmmount();
 
 	void PrintSupportedAccountTypes();
 	void PrintCustomerDetails(const Customer& customer) const;
 	void PrintAccountDetails(const Account* const account) const;
 	
-	void DisplaySuccessMessege(const std::string messege);
-	void DisplayErrorMessege(const std::string messege);
+	void DisplayMessage(const std::string messege);
+	void DisplayErrorMessage(const std::string errorMessege);
 
 private:
 	void IgnoreWhitespaces();
-	std::string InputString();
 	int GetIntegerFromString(std::string& str);
 	double GetDoubleFromString(std::string& str);
 
