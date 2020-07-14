@@ -13,6 +13,11 @@ public:
 	void Start();
 
 private:
+	void DisplayMenu();
+	OptionCode GetOptionFromConsole();
+
+	void DispatchAndExecuteOption(OptionCode& optionCode);
+
 	void AddCustomer();
 	void DeleteCustomer();
 	void AddAccount();
@@ -24,8 +29,10 @@ private:
 	void Withdraw();
 	void Deposit();
 	void Transfer();
+	void StopApplication();
 
 private:
 	ConsoleInterface consoleInterface;
 	Bank bank;
+	bool isApplicationRunning;
 };

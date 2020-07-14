@@ -19,7 +19,7 @@ public:
 	bool IsValidOption(int command);
 
 private:
-	void initOptions();
+	void initializeOptions();
 
 private:
 	std::map<int, std::string> legalOptions;

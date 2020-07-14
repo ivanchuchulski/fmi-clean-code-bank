@@ -5,85 +5,105 @@
 
 ConsoleApplication::ConsoleApplication()
 	:	consoleInterface(),
-		bank("Bright finances", "Sofia")
+		bank("Bright finances", "Sofia"),
+        isApplicationRunning(true)
 {}
 
 ConsoleApplication::~ConsoleApplication()
-{
-}
+{}
 
 void ConsoleApplication::Start()
 {
-    bool running = true;
-
     do
     {
-        consoleInterface.DisplayMenu();
+        DisplayMenu();
 
-        OptionCode option = consoleInterface.GetOption();
+        OptionCode option = GetOptionFromConsole();
+        
+        DispatchAndExecuteOption(option);
 
-        switch (option)
-        {
-            case OptionCode::AddCustomer:
-                AddCustomer();
-                break;
-
-            case OptionCode::DeleteCustomer:
-                DeleteCustomer();
-                break;
-
-            case OptionCode::AddAccount:
-                AddAccount();
-                break;
-
-            case OptionCode::DeleteAccount:
-                DeleteAccount();
-                break;
-
-            case OptionCode::ListCustomers:
-                ListCustomers();
-                break;
-
-            case OptionCode::ListAllCustomersAccount:
-                ListAllCustomersAccount();
-                break;
-
-            case OptionCode::ListAccounts:
-                ListAccounts();
-                break;
-
-            case OptionCode::BankInformation:
-                BankInformation();
-                break;
-
-            case OptionCode::Withdraw:
-                Withdraw();
-                break;
-
-            case OptionCode::Deposit:
-                Deposit();
-                break;
-
-            case OptionCode::Transfer:
-                Transfer();
-                break;
-
-            case OptionCode::Help:
-                consoleInterface.DisplayMenu();
-                break;
-
-            case OptionCode::Quit:
-                running = false;
-                break;
-
-            default:
-                consoleInterface.DisplayErrorMessege("error, wrong command, please try again\n");
-                break;
-        }
-
-    } while (running);
+    } while (isApplicationRunning);
 
     std::cout << "exiting...\n";
+}
+
+void ConsoleApplication::DisplayMenu()
+{
+    consoleInterface.DisplayMenu();
+}
+
+OptionCode ConsoleApplication::GetOptionFromConsole()
+{
+    try
+    {
+        return consoleInterface.GetOption();
+    }
+    catch (const std::exception& exception)
+    {
+        consoleInterface.DisplayErrorMessege(exception.what());
+    }
+}
+
+void ConsoleApplication::DispatchAndExecuteOption(OptionCode& optionCode)
+{
+    switch (optionCode)
+    {
+    case OptionCode::AddCustomer:
+        AddCustomer();
+        break;
+
+    case OptionCode::DeleteCustomer:
+        DeleteCustomer();
+        break;
+
+    case OptionCode::AddAccount:
+        AddAccount();
+        break;
+
+    case OptionCode::DeleteAccount:
+        DeleteAccount();
+        break;
+
+    case OptionCode::ListCustomers:
+        ListCustomers();
+        break;
+
+    case OptionCode::ListAllCustomersAccount:
+        ListAllCustomersAccount();
+        break;
+
+    case OptionCode::ListAccounts:
+        ListAccounts();
+        break;
+
+    case OptionCode::BankInformation:
+        BankInformation();
+        break;
+
+    case OptionCode::Withdraw:
+        Withdraw();
+        break;
+
+    case OptionCode::Deposit:
+        Deposit();
+        break;
+
+    case OptionCode::Transfer:
+        Transfer();
+        break;
+
+    case OptionCode::Help:
+        DisplayMenu();
+        break;
+
+    case OptionCode::Quit:
+        StopApplication();
+        break;
+
+    default:
+        consoleInterface.DisplayErrorMessege("error : wrong command, please try again\n");
+        break;
+    }
 }
 
 void ConsoleApplication::AddCustomer()
@@ -213,6 +233,8 @@ void ConsoleApplication::ListAccounts()
 
 void ConsoleApplication::BankInformation()
 {
+    ListCustomers();
+    ListAccounts();
 }
 
 void ConsoleApplication::Withdraw()
@@ -283,4 +305,9 @@ void ConsoleApplication::Transfer()
     {
         consoleInterface.DisplayErrorMessege(exception.what());
     }
+}
+
+void ConsoleApplication::StopApplication()
+{
+    isApplicationRunning = false;
 }

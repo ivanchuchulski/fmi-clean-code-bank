@@ -9,35 +9,29 @@ void ConsoleInterface::DisplayMenu()
 	menu.ShowMenu();
 }
 
-// TODO : rewrite this method to use GetIntegerFromString, i.e. must rethrow exception
 OptionCode ConsoleInterface::GetOption()
 {
-	do
+	try
 	{
 		std::string line;
+		int command;
 
-		std::cout << "your choice : ";
+		std::cout << "choose your command : ";
 		line = InputString();
+		
+		command = GetIntegerFromString(line);
 
-		char* end;
-		int command = std::strtol(line.c_str(), &end, 10);
-
-		if (*end)
+		if (!menu.IsValidOption(command))
 		{
-			DisplayErrorMessege("error : wrong command, commands must be integers, please try again\n");
-			continue;
+			throw std::exception("error : your command is not a valid option\n");
 		}
 
-		if (menu.IsValidOption(command))
-		{
-			return static_cast<OptionCode>(command);
-		}
-		else
-		{
-			DisplayErrorMessege("error : command out of range, please try again\n");
-		}
-
-	} while (true);
+		return static_cast<OptionCode>(command);
+	}
+	catch (const std::exception& exception)
+	{
+		throw;
+	}
 }
 
 std::string ConsoleInterface::InputCustomerID()
@@ -146,14 +140,14 @@ int ConsoleInterface::GetIntegerFromString(std::string& str)
 	const char* pointer = str.c_str();
 	char* end;
 
-	int converted = std::strtol(pointer, &end, 10);
+	int stringConvertedToInteger = std::strtol(pointer, &end, 10);
 	
 	if (*end)
 	{
-		throw std::exception("error : input must be integer");
+		throw std::exception("error : input must be integer\n");
 	}
 
-	return converted;
+	return stringConvertedToInteger;
 }
 
 double ConsoleInterface::GetDoubleFromString(std::string& str)
@@ -161,12 +155,12 @@ double ConsoleInterface::GetDoubleFromString(std::string& str)
 	const char* pointer = str.c_str();
 	char* end;
 
-	double converted = std::strtod(pointer, &end);
+	double stringConvertedToDouble = std::strtod(pointer, &end);
 
 	if (*end)
 	{
-		throw std::exception("error : input must be double value");
+		throw std::exception("error : input must be floating point number");
 	}
 
-	return converted;
+	return stringConvertedToDouble;
 }
