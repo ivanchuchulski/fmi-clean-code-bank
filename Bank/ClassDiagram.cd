@@ -25,20 +25,20 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ConsoleApplication">
-    <Position X="24.25" Y="1" Width="2.5" />
+    <Position X="24.25" Y="1" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AAQAAUEAACAAAAAABAAAAQAEACAAAAAAAAACQQAAEgI=</HashCode>
+      <HashCode>AAQAAUEAACAEAABABAAAAQAEACAABAAAAAACQQAAEgo=</HashCode>
       <FileName>src\ConsoleApplication\ConsoleApplication.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="bank" />
       <Field Name="consoleInterface" />
+      <Field Name="bank" />
     </ShowAsAssociation>
   </Class>
   <Class Name="ConsoleInterface">
     <Position X="24.25" Y="6.25" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AIgGAAAACEABACCQACAAAQgIAAAIAAAAAAAASIACAAA=</HashCode>
+      <HashCode>AIgCAAAACEABAACQAAAAIAgIAAAIAAAAAAAASgACAAA=</HashCode>
       <FileName>src\ConsoleApplication\ConsoleInterface\ConsoleInterface.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -48,14 +48,14 @@
   <Class Name="Menu">
     <Position X="29" Y="5.75" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAIBAAQAAAAAAAAAAAAAIAAAAAAAAACABAAA=</HashCode>
+      <HashCode>AAAAAAAAAIBAAAAAAgAAAAAAAAAIAAAAAAAAACABAAA=</HashCode>
       <FileName>src\ConsoleApplication\ConsoleInterface\Menu\Menu.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CustomerList">
     <Position X="16" Y="7" Width="3.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAACAIAAAAAABAKQAAAwACAAIAAAAAAkAABAAAA=</HashCode>
+      <HashCode>AAAAAAACAIAAAAAABAIQAABwACAAIAAAAAAkAABAAAA=</HashCode>
       <FileName>src\CustomerList\CustomerList.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -83,7 +83,7 @@
   <Class Name="Bank">
     <Position X="20.25" Y="0.5" Width="3" />
     <TypeIdentifier>
-      <HashCode>AQAAAAEACCAAABQCBAACAQAoIKAAAAACAoAmARAABgA=</HashCode>
+      <HashCode>AQAAAAEAACAAABQCBAACAQAoIKAAAAACAoAmARAABgA=</HashCode>
       <FileName>src\Bank\Bank.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
