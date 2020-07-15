@@ -62,6 +62,11 @@ void Bank::AddCustomer(Customer* customer)
 {
 	try
 	{
+		if (m_customerList.CustomerExists(customer->GetName()))
+		{
+			throw std::exception("customer addition failed : customer is already registered\n");
+		}
+
 		m_customerList.AddCustomer(customer);
 	}
 	catch (std::exception& exception)
@@ -70,13 +75,15 @@ void Bank::AddCustomer(Customer* customer)
 	}
 }
 
-void Bank::DeleteCustomer(const std::string& customerID)
+void Bank::DeleteCustomer(const std::string& customerName)
 {
 	try
 	{
-		m_customerList.DeleteCustomer(customerID);
-		
-		m_accountList.DeleteAllCustomersAccounts(customerID);
+		auto& customer = m_customerList.GetCustomer(customerName);
+
+		m_accountList.DeleteAllCustomersAccounts(customerName);
+
+		m_customerList.DeleteCustomer(customerName);
 	}
 	catch (const std::exception& exception)
 	{
@@ -93,7 +100,7 @@ void Bank::AddAccount(Account* account)
 			throw std::exception("account addition failed : the bank has no registered customers\n");
 		}
 
-		if (!m_customerList.CustomerExists(account->GetOwnerID()))
+		if (!m_customerList.CustomerExists(account->GetOwnerName()))
 		{
 			throw std::exception("account addition failed : the customer owner doesn't exist\n");
 		}
@@ -216,19 +223,19 @@ const AccountList& Bank::GetAccountList()
 	return m_accountList;
 }
 
-const Customer& Bank::GetCustomerByID(std::string& customerID)
+const Customer& Bank::GetCustomerByName(std::string& customerName)
 {
 	if (m_customerList.Empty())
 	{
 		throw std::exception("bank has no registered customers and there are no opened account\n");
 	}
 
-	if (!m_customerList.CustomerExists(customerID))
+	if (!m_customerList.CustomerExists(customerName))
 	{
 		throw std::exception("error : customer is not registered\n");
 	}
 
-	return m_customerList.GetCustomerByID(customerID);
+	return m_customerList.GetCustomer(customerName);
 }
 
 // private helper methods

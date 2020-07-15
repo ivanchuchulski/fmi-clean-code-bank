@@ -48,8 +48,6 @@ AccountType ConsoleInterface::InputAccountType()
 	std::string inputLine;
 	int accountTypeAsInt;
 
-	std::cout << "enter account type : ";
-
 	inputLine = InputString();
 
 	accountTypeAsInt = GetIntegerFromString(inputLine);
@@ -61,8 +59,6 @@ double ConsoleInterface::InputMoneyAmmount()
 {
 	std::string inputLine;
 	double moneyAmmount;
-
-	std::cout << "enter money ammount: ";
 
 	inputLine = InputString();
 

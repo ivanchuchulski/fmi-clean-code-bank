@@ -10,8 +10,8 @@ class CurrentAccount : public Account
 public:
 	CurrentAccount();
 	CurrentAccount(const CurrentAccount& other);
-	CurrentAccount(const std::string& ownerID);
-	CurrentAccount(const std::string& ownerID, double initialDeposit);
+	CurrentAccount(const std::string& ownerName);
+	CurrentAccount(const std::string& ownerName, double initialDeposit);
 
 	virtual ~CurrentAccount() = default;
 

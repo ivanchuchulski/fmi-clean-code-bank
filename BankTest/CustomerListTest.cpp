@@ -23,6 +23,20 @@ namespace BankTest
 			
 			Assert::ExpectException<std::exception>(methodWrapper);
 		}
+		TEST_METHOD(TestDeletingAnExistingCustomer)
+		{
+			std::string customerName = "george";
+			std::string customerAddress = "sofia";
+
+			Customer* customer = new Customer(customerName, customerAddress);
+			CustomerList customerList;
+
+			customerList.AddCustomer(customer);
+			customerList.DeleteCustomer(customerName);
+
+			Assert::AreEqual(true, customerList.Empty());
+		}
+
 
 	};
 

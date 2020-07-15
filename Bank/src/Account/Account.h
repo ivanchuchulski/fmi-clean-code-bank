@@ -13,21 +13,21 @@ class Account
 public:
 	Account();
 	Account(const Account& other) = default;
-	Account(const std::string& ownerID);
-	Account(const std::string& ownerID, double initialDeposit);
+	Account(const std::string& ownerName);
+	Account(const std::string& ownerName, double initialDeposit);
 
 	virtual ~Account() = default;
 
 	Account& operator=(const Account& other) = default;
 
 	const double GetBalance() const;
-	const std::string GetOwnerID() const;
+	const std::string GetOwnerName() const;
 	const std::string GetAccountIBAN() const;
 
-	void SetOwnerID(const std::string& ownerID);
+	void SetOwnerName(const std::string& ownerName);
 	void SetIBAN(const std::string& iban);
 
-	bool AccountOwnedByCustomer(const std::string& customerID) const;
+	bool AccountOwnedByCustomer(const std::string& ownerName) const;
 
 	virtual void Deposit(double depositAmmount) = 0;
 	virtual void Withdraw(double withdrawAmmount) = 0;
@@ -46,9 +46,9 @@ private:
 	static std::string M_IBAN_PREFIX;
 
 private:
-	double m_balance;
-	std::string m_ownerID;
-	std::string m_accountIBAN;
+	double balance;
+	std::string ownerName;
+	std::string accountIBAN;
 };
 
 

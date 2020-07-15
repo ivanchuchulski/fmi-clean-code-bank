@@ -17,13 +17,13 @@ public:
 	CustomerList& operator=(const CustomerList& other) = default;
 
 	void AddCustomer(Customer* customer);
-	void DeleteCustomer(const std::string& customerID);
+	void DeleteCustomer(const std::string& customerName);
 	void Clear();
 
 	bool Empty() const;
-	bool CustomerExists(const std::string& customerID) const;
+	bool CustomerExists(const std::string& customerName) const;
 
-	const Customer& GetCustomerByID(const std::string& customerID) const;
+	const Customer& GetCustomer(const std::string& customerName) const;
 
 	customer_iterator begin();
 	customer_iterator end();

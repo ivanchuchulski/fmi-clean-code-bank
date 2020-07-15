@@ -7,8 +7,8 @@ class SavingsAccount : public Account
 public:
 	SavingsAccount();
 	SavingsAccount(const SavingsAccount& other) = default;
-	SavingsAccount(const std::string& ownerID);
-	SavingsAccount(const std::string& ownerID, double initialDeposit, float yearlyInterestProcent);
+	SavingsAccount(const std::string& ownerName);
+	SavingsAccount(const std::string& ownerName, double initialDeposit, float yearlyInterestProcent);
 
 	virtual ~SavingsAccount() = default;
 

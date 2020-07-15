@@ -31,7 +31,7 @@ public:
 	const std::string GetAddress() const;
 
 	void AddCustomer(Customer* customer);
-	void DeleteCustomer(const std::string& customerID);
+	void DeleteCustomer(const std::string& customerName);
 
 	void AddAccount(Account* account);
 	void DeleteAccount(const std::string& iban);
@@ -43,7 +43,7 @@ public:
 	const CustomerList& GetCustomerList();
 	const AccountList& GetAccountList();
 
-	const Customer& GetCustomerByID(std::string& customerID);
+	const Customer& GetCustomerByName(std::string& customerName);
 
 private:
 	void ClearBank();

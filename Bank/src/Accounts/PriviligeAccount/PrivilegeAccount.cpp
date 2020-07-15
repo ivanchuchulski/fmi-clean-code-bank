@@ -9,13 +9,13 @@ PrivilegeAccount::PrivilegeAccount()
 		m_overdraftOverBalance(M_OVERDRAFT_DEFAULT)
 {}
 
-PrivilegeAccount::PrivilegeAccount(const std::string& ownerID)
-	:	Account(ownerID),
+PrivilegeAccount::PrivilegeAccount(const std::string& ownerName)
+	:	Account(ownerName),
 		m_overdraftOverBalance(M_OVERDRAFT_DEFAULT)
 {}
 
-PrivilegeAccount::PrivilegeAccount(const std::string& ownerID, double initialDeposit, double overdraft)
-	:	Account(ownerID, initialDeposit),
+PrivilegeAccount::PrivilegeAccount(const std::string& ownerName, double initialDeposit, double overdraft)
+	:	Account(ownerName, initialDeposit),
 		m_overdraftOverBalance((overdraft >= 0) ? overdraft : M_OVERDRAFT_DEFAULT)
 {}
 

@@ -10,12 +10,12 @@ CurrentAccount::CurrentAccount(const CurrentAccount& other)
 	: Account(other)
 {}
 
-CurrentAccount::CurrentAccount(const std::string& ownerID)
-	: Account(ownerID)
+CurrentAccount::CurrentAccount(const std::string& ownerName)
+	: Account(ownerName)
 {}
 
-CurrentAccount::CurrentAccount(const std::string& ownerID, double initialDeposit)
-	: Account(ownerID, initialDeposit)
+CurrentAccount::CurrentAccount(const std::string& ownerName, double initialDeposit)
+	: Account(ownerName, initialDeposit)
 {}
 
 CurrentAccount& CurrentAccount::operator=(const CurrentAccount& other)
@@ -32,7 +32,7 @@ void CurrentAccount::Deposit(double depositAmmount)
 {
 	if (depositAmmount < 0)
 	{
-		throw std::exception("error : deposit ammount can\'t be negative number");
+		throw std::exception("error : deposit ammount can't be negative number");
 	}
 
 	IncreaseBalance(depositAmmount);
@@ -42,7 +42,7 @@ void CurrentAccount::Withdraw(double withdrawAmmount)
 {
 	if (withdrawAmmount < 0)
 	{
-		throw std::exception("error : withdraw ammount can\'be negative number, it must be positive");
+		throw std::exception("error : withdraw ammount can'be negative number, it must be positive");
 	}
 
 	if (GetBalance() < withdrawAmmount)

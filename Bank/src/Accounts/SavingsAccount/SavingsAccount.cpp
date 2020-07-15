@@ -9,13 +9,13 @@ SavingsAccount::SavingsAccount()
 		m_yearlyInterestProcent(M_YEARLY_INTEREST_DEFAULT)
 {}
 
-SavingsAccount::SavingsAccount(const std::string& ownerID)
-	:	Account(ownerID),
+SavingsAccount::SavingsAccount(const std::string& ownerName)
+	:	Account(ownerName),
 		m_yearlyInterestProcent(M_YEARLY_INTEREST_DEFAULT)
 {}
 
-SavingsAccount::SavingsAccount(const std::string& ownerID, double initialDeposit, float yearlyInterestProcent)
-	:	Account(ownerID, initialDeposit),
+SavingsAccount::SavingsAccount(const std::string& ownerName, double initialDeposit, float yearlyInterestProcent)
+	:	Account(ownerName, initialDeposit),
 		m_yearlyInterestProcent((yearlyInterestProcent >= 0.0f && yearlyInterestProcent <= 100.0f) ? yearlyInterestProcent : M_YEARLY_INTEREST_DEFAULT)
 {}
 
@@ -39,14 +39,14 @@ void SavingsAccount::IncreaseInterest(float interestIncrease)
 {
 	if (interestIncrease < 0)
 	{
-		throw std::exception("error : interest increase can\'t be negative");
+		throw std::exception("error : interest increase can't be negative");
 	}
 
 	float increasedInterest = m_yearlyInterestProcent + interestIncrease;
 
 	if (increasedInterest > 100)
 	{
-		throw std::exception("error : interest can\'t become more than 100%");
+		throw std::exception("error : interest can't become more than 100%");
 	}
 
 	m_yearlyInterestProcent = increasedInterest;

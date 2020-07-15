@@ -19,7 +19,6 @@ public:
 
 	Customer& operator=(const Customer& other) = default;
 
-	void SetID(const std::string& id);
 	void SetName(const std::string& name);
 	void SetAddress(const std::string& address);
 

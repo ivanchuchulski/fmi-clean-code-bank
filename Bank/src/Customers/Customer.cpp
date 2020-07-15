@@ -20,11 +20,6 @@ Customer::Customer(const std::string& name, const std::string& address)
 	M_ID_COUNTER++;
 }
 
-void Customer::SetID(const std::string & id)
-{
-	m_id = id;
-}
-
 void Customer::SetName(const std::string & name)
 {
 	m_name = name;
@@ -58,7 +53,7 @@ void Customer::DisplayCustomerInfo() const
 
 bool Customer::Equals(Customer& other)
 {
-	return m_id == other.m_id;
+	return m_name == other.m_name;
 }
 
 // friend methods

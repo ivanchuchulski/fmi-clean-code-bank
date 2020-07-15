@@ -10,8 +10,8 @@ class PrivilegeAccount : public Account
 public:
 	PrivilegeAccount();
 	PrivilegeAccount(const PrivilegeAccount& other) = default;
-	PrivilegeAccount(const std::string& ownerID);
-	PrivilegeAccount(const std::string& ownerID, double initialDeposit, double overdraft);
+	PrivilegeAccount(const std::string& ownerName);
+	PrivilegeAccount(const std::string& ownerName, double initialDeposit, double overdraft);
 
 	virtual ~PrivilegeAccount() = default;
 

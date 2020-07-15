@@ -137,14 +137,14 @@ void ConsoleApplication::DeleteCustomer()
 {
     try
     {
-        std::string customerID;
+        std::string customerName;
 
         consoleInterface.DisplayMessage("please provide the customer's ID to remove\n");
 
-        consoleInterface.DisplayMessage("enter customer id : ");
-        customerID = consoleInterface.InputString();
+        consoleInterface.DisplayMessage("enter customer name : ");
+        customerName = consoleInterface.InputString();
 
-        bank.DeleteCustomer(customerID);
+        bank.DeleteCustomer(customerName);
 
         consoleInterface.DisplayMessage("sucess : customer removed\n");
     }
@@ -158,20 +158,20 @@ void ConsoleApplication::AddAccount()
 {
     try
     {
-        std::string accountOwnerID;
+        std::string accountOnwerName;
         AccountType accountType;
 
-        consoleInterface.DisplayMessage("please provide customer ID of account's owner and select the type of the account to add\n");
+        consoleInterface.DisplayMessage("please provide customer name for account's owner and select the type of the account to add\n");
 
-        consoleInterface.DisplayMessage("enter customer id : ");
-        accountOwnerID = consoleInterface.InputString();
+        consoleInterface.DisplayMessage("enter owner name: ");
+        accountOnwerName = consoleInterface.InputString();
 
         consoleInterface.PrintSupportedAccountTypes();
 
         consoleInterface.DisplayMessage("enter account type : ");
         accountType = consoleInterface.InputAccountType();
 
-        Account* account = AccountFactory::CreateAccount(accountType, accountOwnerID);
+        Account* account = AccountFactory::CreateAccount(accountType, accountOnwerName);
 
         bank.AddAccount(account);
 
@@ -225,14 +225,14 @@ void ConsoleApplication::ListAllCustomersAccount()
 {
     try
     {
-        std::string customerID;
+        std::string customerName;
 
-        consoleInterface.DisplayMessage("enter customer ID to list his accounts\n");
+        consoleInterface.DisplayMessage("enter customer name to list his accounts\n");
 
-        consoleInterface.DisplayMessage("enter customer ID : ");
-        customerID = consoleInterface.InputString();
+        consoleInterface.DisplayMessage("enter customer name : ");
+        customerName = consoleInterface.InputString();
 
-        const Customer& customer = bank.GetCustomerByID(customerID);
+        const Customer& customer = bank.GetCustomerByName(customerName);
 
         consoleInterface.PrintCustomerDetails(customer);
 

@@ -7,13 +7,19 @@ void CustomerList::AddCustomer(Customer* customer)
 	m_customers.emplace_back(*customer);
 }
 
-void CustomerList::DeleteCustomer(const std::string& customerID)
+void CustomerList::DeleteCustomer(const std::string& customerName)
 {
 	try
 	{
-		auto customerToRemovePosition = GetCustomerPosition(customerID);
+		auto customerPosition = GetCustomerPosition(customerName);
 
-		m_customers.erase(customerToRemovePosition);
+		if (customerPosition == end())
+		{
+			throw std::exception("error : customer doesn't exist\n");
+		}
+
+		m_customers.erase(customerPosition);
+
 	}
 	catch (const std::exception&)
 	{
@@ -31,16 +37,23 @@ bool CustomerList::Empty() const
 	return m_customers.empty();
 }
 
-bool CustomerList::CustomerExists(const std::string& customerID) const
+bool CustomerList::CustomerExists(const std::string& customerName) const
 {
-	auto customerPosition = GetCustomerPosition(customerID);
+	auto customerPosition = GetCustomerPosition(customerName);
 
 	return customerPosition != m_customers.end();
 }
 
-const Customer& CustomerList::GetCustomerByID(const std::string& customerID) const
+const Customer& CustomerList::GetCustomer(const std::string& customerName) const
 {
-	return *GetCustomerPosition(customerID);
+	auto customerPosition = GetCustomerPosition(customerName);
+
+	if (customerPosition == end())
+	{
+		throw std::exception("error : customer doesn't exist\n");
+	}
+
+	return *customerPosition;
 }
 
 customer_iterator CustomerList::begin()
@@ -64,16 +77,16 @@ customer_const_iterator CustomerList::end() const
 }
 
 // private methods
-customer_const_iterator CustomerList::GetCustomerPosition(const std::string& customerID) const
+customer_const_iterator CustomerList::GetCustomerPosition(const std::string& customerName) const
 {
 	for (auto customer = m_customers.begin(); customer != m_customers.end(); ++customer) 
 	{
-		if (customer->GetID() == customerID) 
+		if (customer->GetName() == customerName)
 		{
 			return customer;
 		}
 	}
 
-	throw std::exception("error : customer does not exist\n");
+	return m_customers.end();
 }
 
