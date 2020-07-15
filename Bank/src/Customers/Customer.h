@@ -28,7 +28,7 @@ public:
 
 	void DisplayCustomerInfo() const;
 
-	bool Equals(Customer& other);
+	bool Equals(const Customer& other) const;
 
 	friend std::ostream& operator<<(std::ostream& outStr, const Customer& customer);
 	friend std::istream& operator>>(std::istream& inStr, Customer& customer);

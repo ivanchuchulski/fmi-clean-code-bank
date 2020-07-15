@@ -126,6 +126,8 @@ void ConsoleApplication::AddCustomer()
         bank.AddCustomer(customer);
 
         consoleInterface.DisplayMessage("success : customer added\n");
+
+        delete customer;
     }
     catch (const std::exception& exception)
     {

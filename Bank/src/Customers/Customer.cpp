@@ -51,7 +51,7 @@ void Customer::DisplayCustomerInfo() const
 	std::cout << (*this);
 }
 
-bool Customer::Equals(Customer& other)
+bool Customer::Equals(const Customer& other) const
 {
 	return m_name == other.m_name;
 }

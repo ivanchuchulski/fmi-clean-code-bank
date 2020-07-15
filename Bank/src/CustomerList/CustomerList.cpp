@@ -4,6 +4,11 @@
 
 void CustomerList::AddCustomer(Customer* customer)
 {
+	if (CustomerExists(customer->GetName()))
+	{
+		throw std::exception("customer addition failed : customer is already registered\n");
+	}
+
 	m_customers.emplace_back(*customer);
 }
 
@@ -15,7 +20,7 @@ void CustomerList::DeleteCustomer(const std::string& customerName)
 
 		if (customerPosition == end())
 		{
-			throw std::exception("error : customer doesn't exist\n");
+			throw std::exception("customer removal failed : customer doesn't exist\n");
 		}
 
 		m_customers.erase(customerPosition);

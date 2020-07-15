@@ -62,11 +62,6 @@ void Bank::AddCustomer(Customer* customer)
 {
 	try
 	{
-		if (m_customerList.CustomerExists(customer->GetName()))
-		{
-			throw std::exception("customer addition failed : customer is already registered\n");
-		}
-
 		m_customerList.AddCustomer(customer);
 	}
 	catch (std::exception& exception)
