@@ -69,54 +69,29 @@ bool AccountList::Empty() const
 	return m_accounts.empty();
 }
 
-void AccountList::WithdrawFromAccount(const std::string& IBAN, double withdrawAmmount)
-{
-	try
-	{
-		auto account = GetAccount(IBAN);
-		account->Withdraw(withdrawAmmount);
-	}
-	catch (const std::exception& exception)
-	{
-		throw;
-	}
-}
-
-void AccountList::DepositToAccount(const std::string& IBAN, double depotisAmmount)
-{
-	try
-	{
-		auto account = GetAccount(IBAN);
-		account->Deposit(depotisAmmount);
-	}
-	catch (const std::exception & exception)
-	{
-		throw;
-	}
-}
-
 Account* AccountList::GetAccount(const std::string& IBAN)
 {
-	try
+	account_iterator accountPosition = GetAccountPosition(IBAN);
+
+	if (accountPosition == end())
 	{
-		return *GetAccountPosition(IBAN);
+		throw std::exception("error : account doesn't exist\n");
 	}
-	catch (const std::exception& exception)
-	{
-		throw;
-	}
+
+	return *accountPosition;
+
 }
 
 const Account* AccountList::GetAccount(const std::string& IBAN) const
 {
-	try
+	account_const_iterator accountPosition = GetAccountPosition(IBAN);
+
+	if (accountPosition == end())
 	{
-		return *GetAccountPosition(IBAN);
+		throw std::exception("error : account doesn't exist\n");
 	}
-	catch (const std::exception & exception)
-	{
-		throw;
-	}
+
+	return *accountPosition;
 }
 
 account_iterator AccountList::begin()
@@ -176,12 +151,8 @@ account_iterator AccountList::GetAccountPosition(const std::string& IBAN)
 			return it;
 		}
 	}
-
-	std::string msg = "error : account with IBAN ";
-	msg.append(IBAN);
-	msg.append(" does not exist\n");
-
-	throw std::exception(msg.c_str());
+	
+	return end();
 }
 
 account_const_iterator AccountList::GetAccountPosition(const std::string& IBAN) const
@@ -199,9 +170,5 @@ account_const_iterator AccountList::GetAccountPosition(const std::string& IBAN) 
 		}
 	}
 
-	std::string msg = "error : account with IBAN ";
-	msg.append(IBAN);
-	msg.append(" does not exist\n");
-
-	throw std::exception(msg.c_str());
+	return end();
 }

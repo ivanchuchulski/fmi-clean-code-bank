@@ -25,9 +25,6 @@ public:
 
 	bool Empty() const;
 
-	void WithdrawFromAccount(const std::string& IBAN, double withdrawAmmount);
-	void DepositToAccount(const std::string& IBAN, double depotisAmmount);
-
 	account_iterator begin();
 	account_iterator end();
 	account_const_iterator begin() const;

@@ -92,12 +92,12 @@ void Bank::AddAccount(Account* account)
 	{
 		if (NoRegisteredCustomers())
 		{
-			throw std::exception("account addition failed : the bank has no registered customers\n");
+			throw std::exception("account addition failed : the bank has no registered customers and you can't open an account\n");
 		}
 
 		if (!m_customerList.CustomerExists(account->GetOwnerName()))
 		{
-			throw std::exception("account addition failed : the customer owner doesn't exist\n");
+			throw std::exception("account addition failed : the specified account owner doesn't exist\n");
 		}
 		
 		m_accountList.AddAccount(account);
@@ -114,7 +114,7 @@ void Bank::DeleteAccount(const std::string& accountIBAN)
 	{
 		if (NoRegisteredCustomers())
 		{
-			throw std::exception("account removal failed : the bank has no registered customers\n");
+			throw std::exception("account removal failed : the bank has no registered customers and thus no opened accounts\n");
 		}
 
 		m_accountList.DeleteAccount(accountIBAN);
@@ -131,7 +131,7 @@ void Bank::Transfer(const std::string& fromIBAN, const std::string& toIBAN, doub
 	{
 		if (NoRegisteredCustomers())
 		{
-			throw std::exception("money transfer failed : the bank has no registered customers\n");
+			throw std::exception("money transfer failed : the bank has no registered customers and thus no opened accounts\n");
 		}
 
 		if (NoOpenedAccounts()) 
@@ -140,6 +140,7 @@ void Bank::Transfer(const std::string& fromIBAN, const std::string& toIBAN, doub
 		}
 
 		WithdrawFromAccount(fromIBAN, transferAmmount);
+
 		DepositToAccount(toIBAN, transferAmmount);
 
 	}
@@ -155,7 +156,7 @@ void Bank::DepositToAccount(const std::string& accountIBAN, double depositAmmoun
 	{
 		if (NoRegisteredCustomers())
 		{
-			throw std::exception("money deposit failed : the bank has no registered customers\n");
+			throw std::exception("money deposit failed : the bank has no registered customers and thus no opened accounts\n");
 		}
 
 		if (NoOpenedAccounts())
@@ -163,7 +164,9 @@ void Bank::DepositToAccount(const std::string& accountIBAN, double depositAmmoun
 			throw std::exception("money deposit failed : the bank has no opened accounts\n");
 		}
 
-		m_accountList.DepositToAccount(accountIBAN, depositAmmount);
+		Account* account = m_accountList.GetAccount(accountIBAN);
+
+		account->Deposit(depositAmmount);
 	}
 	catch (const std::exception& exception)
 	{
@@ -177,7 +180,7 @@ void Bank::WithdrawFromAccount(const std::string& accountIBAN, double withdrawAm
 	{
 		if (NoRegisteredCustomers())
 		{
-			throw std::exception("money withdraw failed : the bank has no registered customers\n");
+			throw std::exception("money withdraw failed : the bank has no registered customers and thus no opened accounts\n");
 		}
 
 		if (NoOpenedAccounts())
@@ -185,7 +188,9 @@ void Bank::WithdrawFromAccount(const std::string& accountIBAN, double withdrawAm
 			throw std::exception("money withdraw failed : the bank has no opened accounts\n");
 		}
 
-		m_accountList.WithdrawFromAccount(accountIBAN, withdrawAmmount);
+		Account* account = m_accountList.GetAccount(accountIBAN);
+
+		account->Withdraw(withdrawAmmount);
 	}
 	catch (const std::exception& exception)
 	{
@@ -197,7 +202,7 @@ const CustomerList& Bank::GetCustomerList()
 {
 	if (NoRegisteredCustomers())
 	{
-		throw std::exception("bank has no registered customers\n");
+		throw std::exception("customer list view failed : bank has no registered customers\n");
 	}
 
 	return m_customerList;
@@ -205,14 +210,14 @@ const CustomerList& Bank::GetCustomerList()
 
 const AccountList& Bank::GetAccountList()
 {
-	if (m_customerList.Empty())
+	if (NoRegisteredCustomers())
 	{
-		throw std::exception("bank has no registered customers and so there are no opened account\n");
+		throw std::exception("account list view failed : bank has no registered customers and thus no opened accounts\n");
 	}
 
-	if (m_accountList.Empty())
+	if (NoOpenedAccounts())
 	{
-		throw std::exception("bank has no opened accounts\n");
+		throw std::exception("account list view failed : bank has no opened accounts\n");
 	}
 
 	return m_accountList;
@@ -220,20 +225,20 @@ const AccountList& Bank::GetAccountList()
 
 const Customer& Bank::GetCustomerByName(std::string& customerName)
 {
-	if (m_customerList.Empty())
+	if (NoRegisteredCustomers())
 	{
-		throw std::exception("bank has no registered customers and there are no opened account\n");
+		throw std::exception("customer view failed : bank has no registered customers\n");
 	}
 
 	if (!m_customerList.CustomerExists(customerName))
 	{
-		throw std::exception("error : customer is not registered\n");
+		throw std::exception("customer view failed : : customer is not registered\n");
 	}
 
 	return m_customerList.GetCustomer(customerName);
 }
 
-// private helper methods
+// private methods
 void Bank::ClearBank()
 {
 	m_bankName.clear();

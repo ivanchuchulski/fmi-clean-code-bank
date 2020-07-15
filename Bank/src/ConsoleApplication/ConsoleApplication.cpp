@@ -193,7 +193,7 @@ void ConsoleApplication::DeleteAccount()
 
         consoleInterface.DisplayMessage("please provide the account's IBAN to remove\n");
 
-        consoleInterface.DisplayMessage("enter account IBAN : \n");
+        consoleInterface.DisplayMessage("enter account IBAN : ");
         accountIBAN = consoleInterface.InputString();
 
         bank.DeleteAccount(accountIBAN);
@@ -210,7 +210,7 @@ void ConsoleApplication::ListCustomers()
 {
     try
     {
-        consoleInterface.DisplayMessage("listing bank customers\n");
+        consoleInterface.DisplayMessage("listing bank customers details\n");
 
         for (const Customer& customer : bank.GetCustomerList())
         {
@@ -236,17 +236,19 @@ void ConsoleApplication::ListAllCustomersAccount()
 
         const Customer& customer = bank.GetCustomerByName(customerName);
 
+        consoleInterface.DisplayMessage("listing customer details\n");
         consoleInterface.PrintCustomerDetails(customer);
 
+        consoleInterface.DisplayMessage("listing customer's accounts details\n");
         for (const Account* const account : bank.GetAccountList())
         {
-            if (account->AccountOwnedByCustomer(customer.GetID()))
+            if (account->AccountOwnedByCustomer(customer.GetName()))
             {
                 consoleInterface.PrintAccountDetails(account);
             }
         }
     }
-    catch (const std::exception & exception)
+    catch (const std::exception& exception)
     {
         consoleInterface.DisplayErrorMessage(exception.what());
     }

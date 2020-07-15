@@ -13,7 +13,7 @@
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAACQCAQAAAAAACQYAAAAYAAAAAAAAAAAiAUBAAgA=</HashCode>
+      <HashCode>AAAAACQCAQAAAAAACQYAAAAQAAAAAAAAAAAiAUBAAAA=</HashCode>
       <FileName>src\AccountList\AccountList.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -90,13 +90,6 @@
       <Field Name="m_customerList" />
       <Field Name="m_accountList" />
     </ShowAsAssociation>
-  </Class>
-  <Class Name="Customer">
-    <Position X="20.25" Y="7" Width="2.25" />
-    <TypeIdentifier>
-      <HashCode>EAEAATEAAAAAAAAAgAAAgAAAAAAAAEQCAAAgQACABAA=</HashCode>
-      <FileName>src\Customers\Customer.h</FileName>
-    </TypeIdentifier>
   </Class>
   <Class Name="Utils">
     <Position X="9.25" Y="12.75" Width="3.25" />

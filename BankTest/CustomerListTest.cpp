@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 
-#include "Customers/Customer.h"
+#include "Customer/Customer.h"
 #include "CustomerList/CustomerList.h"
 #include <exception>
 

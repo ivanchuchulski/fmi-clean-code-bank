@@ -18,9 +18,6 @@
     <ClInclude Include="src\Bank\Bank.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Customers\Customer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Utils\Utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -66,12 +63,12 @@
     <ClInclude Include="src\AccountListIterators\AccountListIterators.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Customer\Customer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Bank\Bank.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Customers\Customer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Utils\Utils.cpp">
@@ -108,6 +105,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Accounts\SavingsAccount\SavingsAccount.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Customer\Customer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -9,7 +9,7 @@
 #include "Accounts/CurrentAccount/CurrentAccount.h"	
 #include "Accounts/SavingsAccount/SavingsAccount.h"
 #include "Accounts/PriviligeAccount/PrivilegeAccount.h"
-#include "Customers/Customer.h"
+#include "Customer/Customer.h"
 #include "CustomerList/CustomerList.h"
 #include "AccountList/AccountList.h"
 

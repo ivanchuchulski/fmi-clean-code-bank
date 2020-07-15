@@ -166,7 +166,7 @@
     <ClInclude Include="src\Accounts\PriviligeAccount\PrivilegeAccount.h" />
     <ClInclude Include="src\Accounts\SavingsAccount\SavingsAccount.h" />
     <ClInclude Include="src\Bank\Bank.h" />
-    <ClInclude Include="src\Customers\Customer.h" />
+    <ClInclude Include="src\Customer\Customer.h" />
     <ClInclude Include="src\Utils\Utils.h" />
   </ItemGroup>
   <ItemGroup>
@@ -181,7 +181,7 @@
     <ClCompile Include="src\Accounts\PriviligeAccount\PrivilegeAccount.cpp" />
     <ClCompile Include="src\Accounts\SavingsAccount\SavingsAccount.cpp" />
     <ClCompile Include="src\Bank\Bank.cpp" />
-    <ClCompile Include="src\Customers\Customer.cpp" />
+    <ClCompile Include="src\Customer\Customer.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Utils\Utils.cpp" />
   </ItemGroup>

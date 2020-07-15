@@ -3,7 +3,7 @@
 #ifndef CUSTOMER_LIST_H
 #define CUSTOMER_LIST_H
 
-#include "Customers/Customer.h"
+#include "Customer/Customer.h"
 #include "Account/Account.h"
 #include <vector>
 #include "CustomerListIterators/CustomerListIterators.h"

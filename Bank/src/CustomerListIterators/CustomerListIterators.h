@@ -5,7 +5,7 @@
 
 #include <vector>
 #include "CustomerList/CustomerList.h"
-#include "Customers/Customer.h"
+#include "Customer/Customer.h"
 
 typedef std::vector<Customer>::iterator customer_iterator;
 typedef std::vector<Customer>::const_iterator customer_const_iterator;
