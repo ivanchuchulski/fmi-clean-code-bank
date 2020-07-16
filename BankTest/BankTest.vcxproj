@@ -156,10 +156,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AccountTest.cpp" />
+    <ClCompile Include="CurrentAccountTest.cpp" />
     <ClCompile Include="BankTest.cpp" />
     <ClCompile Include="CustomerListTest.cpp" />
     <ClCompile Include="CustomerTest.cpp" />
+    <ClCompile Include="PriviligeAccountTest.cpp" />
+    <ClCompile Include="SavingsAccount.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bank\Bank.vcxproj">

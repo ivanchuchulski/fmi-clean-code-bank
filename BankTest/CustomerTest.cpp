@@ -18,5 +18,13 @@ namespace BankTest
 
 			Assert::AreEqual(name, customer->GetName());
 		}
+
+		TEST_METHOD(TestCustomerEqualsReturnsTrueForIdenticalCustomers)
+		{
+			Customer customerOne = Customer("peter", "sofia");
+			Customer customerTwo = Customer("peter", "sofia");
+
+			Assert::IsTrue(customerOne.Equals(customerTwo));
+		}
 	};
 }
