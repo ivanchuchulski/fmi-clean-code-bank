@@ -76,19 +76,19 @@ void PrivilegeAccount::Withdraw(double withdrawAmmount)
 		throw std::exception("error : negative balance");
 	}
 
-	// if balance alone is enough for the withdraw, then just directly decrese from it
+	// if balance alone is enough for the withdraw, then just directly decrease from it
 	else if (GetBalance() >= withdrawAmmount)
 	{
 		DecreaseBalance(withdrawAmmount);
 	}
 
-	// if balance is not enough for the withdraw and we have also use the overdraft
+	// if balance is not enough for the withdraw and we can also use the overdraft
 	else if (GetBalance() + m_overdraftOverBalance >= withdrawAmmount) 
 	{
-		double moneyLack = withdrawAmmount - GetBalance();
+		double moneyLackFromBalance = withdrawAmmount - GetBalance();
 
-		DecreaseOverdraft(moneyLack);
-		DecreaseBalance(withdrawAmmount - moneyLack);
+		DecreaseOverdraft(moneyLackFromBalance);
+		DecreaseBalance(withdrawAmmount - moneyLackFromBalance);
 	}
 
 	// if balance plus overdraft is not enough to cover the withdraw

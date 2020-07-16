@@ -21,10 +21,10 @@ namespace BankTest
 			delete savingsAccount;
 		}
 
-		TEST_METHOD(TestDepositingEqualsTheDepositAmmount)
+		TEST_METHOD(TestDepositingInEmptyBalanceEqualsTheDepositAmmount)
 		{
 			std::string ownerName = "peter";
-			double depositAmmount = 300.0;
+			double depositAmmount = 100.0;
 			Account* savingsAccount = new SavingsAccount(ownerName);
 
 			savingsAccount->Deposit(depositAmmount);
@@ -33,6 +33,50 @@ namespace BankTest
 
 			delete savingsAccount;
 		}
+
+		TEST_METHOD(TestWithrawAfterDepositSameAmmountEqualsZero)
+		{
+			std::string ownerName = "peter";
+			double moneyAmmount = 100.0;
+			Account* savingsAccount = new SavingsAccount(ownerName);
+
+			savingsAccount->Deposit(moneyAmmount);
+
+			savingsAccount->Withdraw(moneyAmmount);
+
+			Assert::AreEqual(0.0, savingsAccount->GetBalance());
+
+			delete savingsAccount;
+		}
+
+		TEST_METHOD(TestWithrawWithEmptyBalanceThrowsException)
+		{
+			std::string ownerName = "peter";
+			double moneyAmmount = 100.0;
+			Account* savingsAccount = new SavingsAccount(ownerName);
+
+			auto method = [&]() { savingsAccount->Withdraw(moneyAmmount); };
+
+			Assert::ExpectException<std::exception>(method);
+
+			delete savingsAccount;
+		}
+
+		TEST_METHOD(TestWithrawMoreThanAvailableBalanceThrowsException)
+		{
+			std::string ownerName = "peter";
+			double moneyAmmount = 100.0;
+			Account* savingsAccount = new SavingsAccount(ownerName);
+		
+			savingsAccount->Deposit(moneyAmmount);
+
+			auto method = [&]() { savingsAccount->Withdraw(2 * moneyAmmount); };
+
+			Assert::ExpectException<std::exception>(method);
+
+			delete savingsAccount;
+		}
+
 	};
 
 }
