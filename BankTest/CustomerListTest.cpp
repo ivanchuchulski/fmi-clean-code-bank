@@ -34,7 +34,7 @@ namespace BankTest
 			customerList.AddCustomer(&customer);
 			customerList.DeleteCustomer(customerName);
 
-			Assert::AreEqual(true, customerList.Empty());
+			Assert::IsTrue(customerList.Empty());
 		}
 
 		TEST_METHOD(TestAddingNonExistingCustomer)

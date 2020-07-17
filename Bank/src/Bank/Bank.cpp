@@ -223,7 +223,7 @@ const AccountList& Bank::GetAccountList()
 	return m_accountList;
 }
 
-const Customer& Bank::GetCustomerByName(std::string& customerName)
+const Customer& Bank::GetCustomerByName(const std::string& customerName)
 {
 	if (NoRegisteredCustomers())
 	{
@@ -236,6 +236,16 @@ const Customer& Bank::GetCustomerByName(std::string& customerName)
 	}
 
 	return m_customerList.GetCustomer(customerName);
+}
+
+bool Bank::NoRegisteredCustomers() const
+{
+	return m_customerList.Empty();
+}
+
+bool Bank::NoOpenedAccounts() const
+{
+	return m_accountList.Empty();
 }
 
 // private methods
@@ -253,14 +263,4 @@ void Bank::CopyOtherBank(const Bank& otherBank)
 	m_bankAddress = otherBank.m_bankAddress;
 	m_customerList = otherBank.m_customerList;
 	m_accountList = otherBank.m_accountList;
-}
-
-bool Bank::NoRegisteredCustomers() const
-{
-	return m_customerList.Empty();
-}
-
-bool Bank::NoOpenedAccounts() const
-{
-	return m_accountList.Empty();
 }

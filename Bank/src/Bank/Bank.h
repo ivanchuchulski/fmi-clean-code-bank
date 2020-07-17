@@ -43,14 +43,14 @@ public:
 	const CustomerList& GetCustomerList();
 	const AccountList& GetAccountList();
 
-	const Customer& GetCustomerByName(std::string& customerName);
+	const Customer& GetCustomerByName(const std::string& customerName);
+
+	bool NoRegisteredCustomers() const;
+	bool NoOpenedAccounts() const;
 
 private:
 	void ClearBank();
 	void CopyOtherBank(const Bank& otherBank);
-
-	bool NoRegisteredCustomers() const;
-	bool NoOpenedAccounts() const;
 
 private:
 	std::string m_bankName;
