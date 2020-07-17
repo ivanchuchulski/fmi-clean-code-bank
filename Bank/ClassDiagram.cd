@@ -53,7 +53,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CustomerList">
-    <Position X="16" Y="7" Width="3.25" />
+    <Position X="16" Y="7" Width="3.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAACAIAAAAAABAIQAABwACAAIAAAAAAgAABBAAA=</HashCode>
       <FileName>src\CustomerList\CustomerList.h</FileName>
@@ -96,6 +96,13 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>src\Utils\Utils.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Customer">
+    <Position X="21" Y="8.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>EAEAATEAAAAAAAAAgAAAgAAAAAAAAEQCAAAgQACABAA=</HashCode>
+      <FileName>src\Customer\Customer.h</FileName>
     </TypeIdentifier>
   </Class>
   <Typedef Name="account_iterator" Collapsed="true">

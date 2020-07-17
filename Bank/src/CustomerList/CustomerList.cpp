@@ -14,22 +14,14 @@ void CustomerList::AddCustomer(Customer* customer)
 
 void CustomerList::DeleteCustomer(const std::string& customerName)
 {
-	try
+	auto customerPosition = GetCustomerPosition(customerName);
+
+	if (customerPosition == end())
 	{
-		auto customerPosition = GetCustomerPosition(customerName);
-
-		if (customerPosition == end())
-		{
-			throw std::exception("customer removal failed : customer doesn't exist\n");
-		}
-
-		m_customers.erase(customerPosition);
-
+		throw std::exception("customer removal failed : customer with the given name is not registered\n");
 	}
-	catch (const std::exception&)
-	{
-		throw;
-	}
+
+	m_customers.erase(customerPosition);
 }
 
 void CustomerList::Clear()
@@ -49,13 +41,25 @@ bool CustomerList::CustomerExists(const std::string& customerName) const
 	return customerPosition != m_customers.end();
 }
 
+Customer& CustomerList::GetCustomer(const std::string& customerName)
+{
+	auto customerPosition = GetCustomerPosition(customerName);
+
+	if (customerPosition == end())
+	{
+		throw std::exception("error : such customer is not registered\n");
+	}
+
+	return *customerPosition;
+}
+
 const Customer& CustomerList::GetCustomer(const std::string& customerName) const
 {
 	auto customerPosition = GetCustomerPosition(customerName);
 
 	if (customerPosition == end())
 	{
-		throw std::exception("error : customer doesn't exist\n");
+		throw std::exception("error : such customer is not registered\n");
 	}
 
 	return *customerPosition;
@@ -82,16 +86,13 @@ customer_const_iterator CustomerList::end() const
 }
 
 // private methods
+customer_iterator CustomerList::GetCustomerPosition(const std::string& customerName)
+{
+	return std::find_if(begin(), end(), [&](const Customer& customer) { return customer.GetName() == customerName; });
+}
+
 customer_const_iterator CustomerList::GetCustomerPosition(const std::string& customerName) const
 {
-	for (auto customer = m_customers.begin(); customer != m_customers.end(); ++customer) 
-	{
-		if (customer->GetName() == customerName)
-		{
-			return customer;
-		}
-	}
-
-	return m_customers.end();
+	return std::find_if(begin(), end(), [&](const Customer& customer) { return customer.GetName() == customerName; });
 }
 

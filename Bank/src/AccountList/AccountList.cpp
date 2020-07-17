@@ -31,26 +31,25 @@ void AccountList::AddAccount(Account* account)
 
 void AccountList::DeleteAccount(const std::string& IBAN)
 {
-	try
-	{
-		auto accountPosition = GetAccountPosition(IBAN);
-		auto accountArrayIndex = accountPosition - m_accounts.begin();
+	account_iterator accountPosition = GetAccountPosition(IBAN);
 
-		delete m_accounts[accountArrayIndex];
-
-		m_accounts.erase(accountPosition);
-	}
-	catch (const std::exception&)
+	if (accountPosition == end())
 	{
-		throw;
+		throw std::exception("error : account doesn't exist\n");
 	}
+
+	auto accountIndexInVector = accountPosition - m_accounts.begin();
+
+	delete m_accounts[accountIndexInVector];
+
+	m_accounts.erase(accountPosition);
 }
 
-void AccountList::DeleteAllCustomersAccounts(const std::string& customerID)
+void AccountList::DeleteAllCustomersAccounts(const std::string& customerName)
 {
 	for (size_t i = 0; i < m_accounts.size(); i++)
 	{
-		if (m_accounts[i]->AccountOwnedByCustomer(customerID))
+		if (m_accounts[i]->AccountOwnedByCustomer(customerName))
 		{
 			delete m_accounts[i];
 
@@ -75,11 +74,10 @@ Account* AccountList::GetAccount(const std::string& IBAN)
 
 	if (accountPosition == end())
 	{
-		throw std::exception("error : account doesn't exist\n");
+		throw std::exception("error : such account is not opened\n");
 	}
 
 	return *accountPosition;
-
 }
 
 const Account* AccountList::GetAccount(const std::string& IBAN) const
@@ -88,7 +86,7 @@ const Account* AccountList::GetAccount(const std::string& IBAN) const
 
 	if (accountPosition == end())
 	{
-		throw std::exception("error : account doesn't exist\n");
+		throw std::exception("error : such account is not opened\n");
 	}
 
 	return *accountPosition;
@@ -139,36 +137,10 @@ void AccountList::CopyAccounts(const std::vector<Account*>& otherAccounts)
 
 account_iterator AccountList::GetAccountPosition(const std::string& IBAN)
 {
-	if (Empty())
-	{
-		throw std::exception("error : no accounts opened");
-	}
-
-	for (auto it = m_accounts.begin(); it != m_accounts.end(); ++it)
-	{
-		if ((*it)->GetAccountIBAN() == IBAN)
-		{
-			return it;
-		}
-	}
-	
-	return end();
+	return std::find_if(begin(), end(), [&](const Account* account) { return account->GetAccountIBAN() == IBAN; });
 }
 
 account_const_iterator AccountList::GetAccountPosition(const std::string& IBAN) const
 {
-	if (Empty())
-	{
-		throw std::exception("error : no accounts opened");
-	}
-
-	for (auto it = m_accounts.begin(); it != m_accounts.end(); ++it)
-	{
-		if ((*it)->GetAccountIBAN() == IBAN)
-		{
-			return it;
-		}
-	}
-
-	return end();
+	return std::find_if(begin(), end(), [&](const Account* account) { return account->GetAccountIBAN() == IBAN; });
 }

@@ -141,7 +141,7 @@ void ConsoleApplication::DeleteCustomer()
     {
         std::string customerName;
 
-        consoleInterface.DisplayMessage("please provide the customer's ID to remove\n");
+        consoleInterface.DisplayMessage("please provide the customer's name to remove\n");
 
         consoleInterface.DisplayMessage("enter customer name : ");
         customerName = consoleInterface.InputString();

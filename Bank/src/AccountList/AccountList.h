@@ -20,18 +20,18 @@ public:
 
 	void AddAccount(Account* account);
 	void DeleteAccount(const std::string& IBAN);
-	void DeleteAllCustomersAccounts(const std::string& customerID);
+	void DeleteAllCustomersAccounts(const std::string& customerName);
 	void Clear();
 
 	bool Empty() const;
+
+	Account* GetAccount(const std::string& IBAN);
+	const Account* GetAccount(const std::string& IBAN) const;
 
 	account_iterator begin();
 	account_iterator end();
 	account_const_iterator begin() const;
 	account_const_iterator end() const;
-
-	Account* GetAccount(const std::string& IBAN);
-	const Account* GetAccount(const std::string& IBAN) const;
 
 private:
 	void ClearAccounts();

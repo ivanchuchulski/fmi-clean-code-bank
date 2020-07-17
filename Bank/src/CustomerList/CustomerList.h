@@ -5,8 +5,8 @@
 
 #include "Customer/Customer.h"
 #include "Account/Account.h"
-#include <vector>
 #include "CustomerListIterators/CustomerListIterators.h"
+#include <vector>
 
 class CustomerList
 {
@@ -23,6 +23,7 @@ public:
 	bool Empty() const;
 	bool CustomerExists(const std::string& customerName) const;
 
+	Customer& GetCustomer(const std::string& customerName);
 	const Customer& GetCustomer(const std::string& customerName) const;
 
 	customer_iterator begin();
@@ -31,7 +32,8 @@ public:
 	customer_const_iterator end() const;
 	
 private:
-	customer_const_iterator GetCustomerPosition(const std::string& customerID) const;
+	customer_iterator GetCustomerPosition(const std::string& customerName);
+	customer_const_iterator GetCustomerPosition(const std::string& customerName) const;
 
 private:
 	std::vector<Customer> m_customers;
