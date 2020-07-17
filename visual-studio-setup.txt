@@ -1,0 +1,14 @@
+1. To run the Bank project in it's properties
+    a) under General set the following
+        -Output Directory :  $(SolutionDir)bin\$(Platform)\$(Configuration)\
+        -Intermediate Directory $(SolutionDir)bin\intermediates\$(Platform)\$(Configuration)\
+        -Configuration type : Application(.exe)
+        -C++ Language Standard : ISO C++ 17 Standard
+    b) under C/C++ -> General -> Additional include directories 
+    add the following : $(ProjectDir)src\
+
+2. To run the BankTest unit tests firstly  make the project a static library
+    a) in from Bank project properties under General set the following to
+        -Configuration type : Static library (.lib)
+    b) in BankTest project properties under C/C++ -> General -> Additional include directories 
+    add the following : $(SolutionDir)Bank\src\
