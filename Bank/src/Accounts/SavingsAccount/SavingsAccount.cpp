@@ -2,21 +2,21 @@
 #include <exception>
 
 // static members initialization
-const float SavingsAccount::M_YEARLY_INTEREST_DEFAULT = 1.1f;
+const float SavingsAccount::YEARLY_INTEREST_DEFAULT = 1.1f;
 
 SavingsAccount::SavingsAccount()
 	:	Account(),
-		m_yearlyInterestProcent(M_YEARLY_INTEREST_DEFAULT)
+		yearlyInterestProcent(YEARLY_INTEREST_DEFAULT)
 {}
 
 SavingsAccount::SavingsAccount(const std::string& ownerName)
 	:	Account(ownerName),
-		m_yearlyInterestProcent(M_YEARLY_INTEREST_DEFAULT)
+		yearlyInterestProcent(YEARLY_INTEREST_DEFAULT)
 {}
 
 SavingsAccount::SavingsAccount(const std::string& ownerName, double initialDeposit, float yearlyInterestProcent)
 	:	Account(ownerName, initialDeposit),
-		m_yearlyInterestProcent((yearlyInterestProcent >= 0.0f && yearlyInterestProcent <= 100.0f) ? yearlyInterestProcent : M_YEARLY_INTEREST_DEFAULT)
+		yearlyInterestProcent((yearlyInterestProcent >= 0.0f && yearlyInterestProcent <= 100.0f) ? yearlyInterestProcent : YEARLY_INTEREST_DEFAULT)
 {}
 
 SavingsAccount& SavingsAccount::operator=(const SavingsAccount& other)
@@ -24,7 +24,7 @@ SavingsAccount& SavingsAccount::operator=(const SavingsAccount& other)
 	if (this != &other) 
 	{
 		Account::operator=(static_cast<const Account&>(other));
-		m_yearlyInterestProcent = other.m_yearlyInterestProcent;
+		yearlyInterestProcent = other.yearlyInterestProcent;
 	}
 
 	return *this;
@@ -32,7 +32,7 @@ SavingsAccount& SavingsAccount::operator=(const SavingsAccount& other)
 
 const float SavingsAccount::GetInterestProcent()
 {
-	return m_yearlyInterestProcent;
+	return yearlyInterestProcent;
 }
 
 void SavingsAccount::IncreaseInterest(float interestIncrease)
@@ -42,14 +42,14 @@ void SavingsAccount::IncreaseInterest(float interestIncrease)
 		throw std::exception("error : interest increase can't be negative");
 	}
 
-	float increasedInterest = m_yearlyInterestProcent + interestIncrease;
+	float increasedInterest = yearlyInterestProcent + interestIncrease;
 
 	if (increasedInterest > 100)
 	{
 		throw std::exception("error : interest can't become more than 100%");
 	}
 
-	m_yearlyInterestProcent = increasedInterest;
+	yearlyInterestProcent = increasedInterest;
 }
 
 void SavingsAccount::DecreaseInterest(float interestDecrease)
@@ -59,14 +59,14 @@ void SavingsAccount::DecreaseInterest(float interestDecrease)
 		throw std::exception("error : interest decrease can\'t be negative");
 	}
 
-	float decreasedInterest = m_yearlyInterestProcent - interestDecrease;
+	float decreasedInterest = yearlyInterestProcent - interestDecrease;
 	
 	if (decreasedInterest < 0)
 	{
 		throw std::exception("error : interest can\'t become less than 0%");
 	}
 
-	m_yearlyInterestProcent = decreasedInterest;
+	yearlyInterestProcent = decreasedInterest;
 }
 
 void SavingsAccount::Deposit(double depositAmmount)
@@ -103,7 +103,7 @@ std::ostream& operator<<(std::ostream& outStream, const SavingsAccount& savingsA
 {
 	outStream << "account type : Savings Account\n" 
 		<< static_cast<const Account&>(savingsAccount)
-		<< "\n\t" << "interst rate : " << savingsAccount.m_yearlyInterestProcent <<  '\n';
+		<< "\n\t" << "interst rate : " << savingsAccount.yearlyInterestProcent <<  '\n';
 
 	return outStream;
 }

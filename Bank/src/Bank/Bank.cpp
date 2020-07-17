@@ -4,24 +4,24 @@
 
 
 Bank::Bank()
-	:	m_bankName("the anonymous bank"),	
-		m_bankAddress("hidden address"),
-		m_customerList(),
-		m_accountList()
+	:	name("the anonymous bank"),	
+		address("hidden address"),
+		customerList(),
+		accountList()
 {}
 
 Bank::Bank(const Bank& other)
-	:	m_bankName(other.m_bankName),
-		m_bankAddress(other.m_bankAddress),
-		m_customerList(other.m_customerList),
-		m_accountList(other.m_accountList)
+	:	name(other.name),
+		address(other.address),
+		customerList(other.customerList),
+		accountList(other.accountList)
 {}
 
 Bank::Bank(const std::string& bankName, const std::string& bankAddress)
-	:	m_bankName(bankName),
-		m_bankAddress(bankAddress),
-		m_customerList(),
-		m_accountList()
+	:	name(bankName),
+		address(bankAddress),
+		customerList(),
+		accountList()
 {}
 
 Bank::~Bank()
@@ -40,29 +40,29 @@ Bank& Bank::operator=(const Bank& other)
 
 void Bank::ChangeBankName(const std::string& name) 
 {
-	m_bankName = name;
+	this->name = name;
 }
 
 void Bank::ChangeBankAddress(const std::string& address) 
 {
-	m_bankAddress = address;
+	this->address = address;
 }
 
 const std::string Bank::GetName() const
 {
-	return std::string(m_bankName);
+	return std::string(name);
 }
 
 const std::string Bank::GetAddress() const
 {
-	return std::string(m_bankAddress);
+	return std::string(address);
 }
 
 void Bank::AddCustomer(Customer* customer)
 {
 	try
 	{
-		m_customerList.AddCustomer(customer);
+		customerList.AddCustomer(customer);
 	}
 	catch (std::exception& exception)
 	{
@@ -74,11 +74,11 @@ void Bank::DeleteCustomer(const std::string& customerName)
 {
 	try
 	{
-		auto& customer = m_customerList.GetCustomer(customerName);
+		auto& customer = customerList.GetCustomer(customerName);
 
-		m_accountList.DeleteAllCustomersAccounts(customerName);
+		accountList.DeleteAllCustomersAccounts(customerName);
 
-		m_customerList.DeleteCustomer(customerName);
+		customerList.DeleteCustomer(customerName);
 	}
 	catch (const std::exception& exception)
 	{
@@ -95,12 +95,12 @@ void Bank::AddAccount(Account* account)
 			throw std::exception("account addition failed : the bank has no registered customers and you can't open an account\n");
 		}
 
-		if (!m_customerList.CustomerExists(account->GetOwnerName()))
+		if (!customerList.CustomerExists(account->GetOwnerName()))
 		{
 			throw std::exception("account addition failed : the specified account owner doesn't exist\n");
 		}
 		
-		m_accountList.AddAccount(account);
+		accountList.AddAccount(account);
 	}
 	catch (const std::exception& exception)
 	{
@@ -117,7 +117,7 @@ void Bank::DeleteAccount(const std::string& accountIBAN)
 			throw std::exception("account removal failed : the bank has no registered customers and thus no opened accounts\n");
 		}
 
-		m_accountList.DeleteAccount(accountIBAN);
+		accountList.DeleteAccount(accountIBAN);
 	}
 	catch (const std::exception& exception)
 	{
@@ -164,7 +164,7 @@ void Bank::DepositToAccount(const std::string& accountIBAN, double depositAmmoun
 			throw std::exception("money deposit failed : the bank has no opened accounts\n");
 		}
 
-		Account* account = m_accountList.GetAccount(accountIBAN);
+		Account* account = accountList.GetAccount(accountIBAN);
 
 		account->Deposit(depositAmmount);
 	}
@@ -188,7 +188,7 @@ void Bank::WithdrawFromAccount(const std::string& accountIBAN, double withdrawAm
 			throw std::exception("money withdraw failed : the bank has no opened accounts\n");
 		}
 
-		Account* account = m_accountList.GetAccount(accountIBAN);
+		Account* account = accountList.GetAccount(accountIBAN);
 
 		account->Withdraw(withdrawAmmount);
 	}
@@ -205,7 +205,7 @@ const CustomerList& Bank::GetCustomerList()
 		throw std::exception("customer list view failed : bank has no registered customers\n");
 	}
 
-	return m_customerList;
+	return customerList;
 }
 
 const AccountList& Bank::GetAccountList()
@@ -220,7 +220,7 @@ const AccountList& Bank::GetAccountList()
 		throw std::exception("account list view failed : bank has no opened accounts\n");
 	}
 
-	return m_accountList;
+	return accountList;
 }
 
 const Customer& Bank::GetCustomerByName(const std::string& customerName)
@@ -230,37 +230,37 @@ const Customer& Bank::GetCustomerByName(const std::string& customerName)
 		throw std::exception("customer view failed : bank has no registered customers\n");
 	}
 
-	if (!m_customerList.CustomerExists(customerName))
+	if (!customerList.CustomerExists(customerName))
 	{
 		throw std::exception("customer view failed : : customer is not registered\n");
 	}
 
-	return m_customerList.GetCustomer(customerName);
+	return customerList.GetCustomer(customerName);
 }
 
 bool Bank::NoRegisteredCustomers() const
 {
-	return m_customerList.Empty();
+	return customerList.Empty();
 }
 
 bool Bank::NoOpenedAccounts() const
 {
-	return m_accountList.Empty();
+	return accountList.Empty();
 }
 
 // private methods
 void Bank::ClearBank()
 {
-	m_bankName.clear();
-	m_bankAddress.clear();
-	m_customerList.Clear();
-	m_accountList.Clear();
+	name.clear();
+	address.clear();
+	customerList.Clear();
+	accountList.Clear();
 }
 
 void Bank::CopyOtherBank(const Bank& otherBank)
 {
-	m_bankName = otherBank.m_bankName;
-	m_bankAddress = otherBank.m_bankAddress;
-	m_customerList = otherBank.m_customerList;
-	m_accountList = otherBank.m_accountList;
+	name = otherBank.name;
+	address = otherBank.address;
+	customerList = otherBank.customerList;
+	accountList = otherBank.accountList;
 }

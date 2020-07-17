@@ -41,7 +41,7 @@ private:
 	account_const_iterator GetAccountPosition(const std::string& IBAN) const;
 	
 private:
-	std::vector<Account*> m_accounts;
+	std::vector<Account*> accounts;
 };
 
 #endif

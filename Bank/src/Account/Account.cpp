@@ -2,31 +2,31 @@
 #include "Utils/Utils.h"
 
 // static members initialization
-unsigned int Account::M_IBAN_COUNTER = 0;
-std::string Account::M_IBAN_PREFIX = "#IBAN#";
+unsigned int Account::IBAN_COUNTER = 0;
+std::string Account::IBAN_PREFIX = "#IBAN#";
 
 Account::Account()
 	:	balance(0.0),
 		ownerName(),
-		accountIBAN(Utils::GenerateNumberedStringWithPrefix(M_IBAN_PREFIX, M_IBAN_COUNTER))
+		accountIBAN(Utils::GenerateNumberedStringWithPrefix(IBAN_PREFIX, IBAN_COUNTER))
 {
-	M_IBAN_COUNTER++;
+	IBAN_COUNTER++;
 }
 
 Account::Account(const std::string& ownerName)
 	:	balance(0.0),
 		ownerName(ownerName),
-		accountIBAN(Utils::GenerateNumberedStringWithPrefix(M_IBAN_PREFIX, M_IBAN_COUNTER))
+		accountIBAN(Utils::GenerateNumberedStringWithPrefix(IBAN_PREFIX, IBAN_COUNTER))
 {
-	M_IBAN_COUNTER++;
+	IBAN_COUNTER++;
 }
 
 Account::Account(const std::string& ownerName, double initialDeposit)
 	:	balance(initialDeposit > 0 ? initialDeposit : 0.0),
 		ownerName(ownerName),
-		accountIBAN(Utils::GenerateNumberedStringWithPrefix(M_IBAN_PREFIX, M_IBAN_COUNTER++))
+		accountIBAN(Utils::GenerateNumberedStringWithPrefix(IBAN_PREFIX, IBAN_COUNTER++))
 {
-	M_IBAN_COUNTER++;
+	IBAN_COUNTER++;
 }
 
 void Account::IncreaseBalance(double increase)

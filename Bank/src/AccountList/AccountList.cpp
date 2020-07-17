@@ -3,9 +3,9 @@
 
 
 AccountList::AccountList(const AccountList& other)
-	: m_accounts()
+	: accounts()
 {
-	CopyAccounts(other.m_accounts);
+	CopyAccounts(other.accounts);
 }
 
 AccountList::~AccountList()
@@ -18,7 +18,7 @@ AccountList& AccountList::operator=(const AccountList& other)
 	if (this != &other)
 	{
 		ClearAccounts();
-		CopyAccounts(other.m_accounts);
+		CopyAccounts(other.accounts);
 	}
 
 	return *this;
@@ -26,7 +26,7 @@ AccountList& AccountList::operator=(const AccountList& other)
 
 void AccountList::AddAccount(Account* account)
 {
-	m_accounts.emplace_back(account);
+	accounts.emplace_back(account);
 }
 
 void AccountList::DeleteAccount(const std::string& IBAN)
@@ -38,22 +38,22 @@ void AccountList::DeleteAccount(const std::string& IBAN)
 		throw std::exception("error : account doesn't exist\n");
 	}
 
-	auto accountIndexInVector = accountPosition - m_accounts.begin();
+	auto accountIndexInVector = accountPosition - accounts.begin();
 
-	delete m_accounts[accountIndexInVector];
+	delete accounts[accountIndexInVector];
 
-	m_accounts.erase(accountPosition);
+	accounts.erase(accountPosition);
 }
 
 void AccountList::DeleteAllCustomersAccounts(const std::string& customerName)
 {
-	for (size_t i = 0; i < m_accounts.size(); i++)
+	for (size_t i = 0; i < accounts.size(); i++)
 	{
-		if (m_accounts[i]->AccountOwnedByCustomer(customerName))
+		if (accounts[i]->AccountOwnedByCustomer(customerName))
 		{
-			delete m_accounts[i];
+			delete accounts[i];
 
-			m_accounts.erase(m_accounts.begin() + i);
+			accounts.erase(accounts.begin() + i);
 		}
 	}
 }
@@ -65,7 +65,7 @@ void AccountList::Clear()
 
 bool AccountList::Empty() const
 {
-	return m_accounts.empty();
+	return accounts.empty();
 }
 
 Account* AccountList::GetAccount(const std::string& IBAN)
@@ -94,22 +94,22 @@ const Account* AccountList::GetAccount(const std::string& IBAN) const
 
 account_iterator AccountList::begin()
 {
-	return m_accounts.begin();
+	return accounts.begin();
 }
 
 account_iterator AccountList::end()
 {
-	return m_accounts.end();
+	return accounts.end();
 }
 
 account_const_iterator AccountList::begin() const
 {
-	return m_accounts.begin();
+	return accounts.begin();
 }
 
 account_const_iterator AccountList::end() const
 {
-	return m_accounts.end();
+	return accounts.end();
 }
 
 // private helpers
@@ -117,21 +117,21 @@ void AccountList::ClearAccounts()
 {
 	// deleting the data pointed by the pointers 
 	// using a pointer reference to be able to do the assignment to nullptr correctly(maybe unnecessary)
-	for (Account*& account : m_accounts)
+	for (Account*& account : accounts)
 	{
 		delete account;
 		account = nullptr;
 	}
 
 	// clearing the pointers that the vector holds
-	m_accounts.clear();
+	accounts.clear();
 }
 
 void AccountList::CopyAccounts(const std::vector<Account*>& otherAccounts)
 {
 	for (const Account* account : otherAccounts)
 	{
-		m_accounts.emplace_back(account->CloneAccount());
+		accounts.emplace_back(account->CloneAccount());
 	}
 }
 

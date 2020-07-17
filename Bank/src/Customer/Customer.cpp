@@ -1,48 +1,48 @@
 #include "Customer/Customer.h"
 
 //static members initialization
-unsigned int Customer::M_ID_COUNTER = 0;
-const std::string Customer::M_ID_PREFIX= "#ID#";
+unsigned int Customer::ID_COUNTER = 0;
+const std::string Customer::ID_PREFIX= "#ID#";
 
 Customer::Customer()
-	:	m_id(Utils::GenerateNumberedStringWithPrefix(M_ID_PREFIX, M_ID_COUNTER)),
-		m_name(),
-		m_address()
+	:	id(Utils::GenerateNumberedStringWithPrefix(ID_PREFIX, ID_COUNTER)),
+		name(),
+		address()
 {
-	M_ID_COUNTER++;
+	ID_COUNTER++;
 }
 
 Customer::Customer(const std::string& name, const std::string& address)
-	:	m_id(Utils::GenerateNumberedStringWithPrefix(M_ID_PREFIX, M_ID_COUNTER)),
-		m_name(name),
-		m_address(address)
+	:	id(Utils::GenerateNumberedStringWithPrefix(ID_PREFIX, ID_COUNTER)),
+		name(name),
+		address(address)
 {
-	M_ID_COUNTER++;
+	ID_COUNTER++;
 }
 
 void Customer::SetName(const std::string & name)
 {
-	m_name = name;
+	this->name = name;
 }
 
 void Customer::SetAddress(const std::string & address)
 {
-	m_address = address;
+	this->address = address;
 }
 
 const std::string Customer::GetID() const
 {
-	return std::string(m_id);
+	return std::string(id);
 }
 
 const std::string Customer::GetName() const
 {
-	return std::string(m_name);
+	return std::string(name);
 }
 
 const std::string Customer::GetAddress() const
 {
-	return std::string(m_address);
+	return std::string(address);
 }
 
 
@@ -53,32 +53,15 @@ void Customer::DisplayCustomerInfo() const
 
 bool Customer::Equals(const Customer& other) const
 {
-	return m_name == other.m_name;
+	return name == other.name;
 }
 
 // friend methods
 std::ostream& operator<<(std::ostream& outStream, const Customer& customer)
 {
-	outStream << "customer name : " << customer.m_name 
-		<< "\ncustomer ID : " << customer.m_id 
-		<< "\naddress : " << customer.m_address << '\n';
+	outStream << "customer name : " << customer.name 
+		<< "\ncustomer ID : " << customer.id 
+		<< "\naddress : " << customer.address << '\n';
 
 	return outStream;
-}
-
-std::istream& operator>>(std::istream& inStream, Customer& customer)
-{
-	std::string name;
-	std::string address;
-
-	std::cout << "enter customer name : ";
-	std::getline(std::cin, name);
-
-	std::cout << "enter customer address : ";
-	std::getline(std::cin, address);
-
-	customer.SetName(name);
-	customer.SetAddress(address);
-
-	return inStream;
 }

@@ -42,8 +42,8 @@ protected:
 	void DecreaseBalance(double decrease);
 
 private:
-	static unsigned int M_IBAN_COUNTER;
-	static std::string M_IBAN_PREFIX;
+	static unsigned int IBAN_COUNTER;
+	static std::string IBAN_PREFIX;
 
 private:
 	double balance;

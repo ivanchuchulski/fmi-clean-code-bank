@@ -9,7 +9,7 @@ void CustomerList::AddCustomer(Customer* customer)
 		throw std::exception("customer addition failed : customer is already registered\n");
 	}
 
-	m_customers.emplace_back(*customer);
+	customers.emplace_back(*customer);
 }
 
 void CustomerList::DeleteCustomer(const std::string& customerName)
@@ -21,24 +21,24 @@ void CustomerList::DeleteCustomer(const std::string& customerName)
 		throw std::exception("customer removal failed : customer with the given name is not registered\n");
 	}
 
-	m_customers.erase(customerPosition);
+	customers.erase(customerPosition);
 }
 
 void CustomerList::Clear()
 {
-	m_customers.clear();
+	customers.clear();
 }
 
 bool CustomerList::Empty() const
 {
-	return m_customers.empty();
+	return customers.empty();
 }
 
 bool CustomerList::CustomerExists(const std::string& customerName) const
 {
 	auto customerPosition = GetCustomerPosition(customerName);
 
-	return customerPosition != m_customers.end();
+	return customerPosition != customers.end();
 }
 
 Customer& CustomerList::GetCustomer(const std::string& customerName)
@@ -67,22 +67,22 @@ const Customer& CustomerList::GetCustomer(const std::string& customerName) const
 
 customer_iterator CustomerList::begin()
 {
-	return m_customers.begin();
+	return customers.begin();
 }
 
 customer_iterator CustomerList::end()
 {
-	return m_customers.end();
+	return customers.end();
 }
 
 customer_const_iterator CustomerList::begin() const
 {
-	return m_customers.begin();
+	return customers.begin();
 }
 
 customer_const_iterator CustomerList::end() const
 {
-	return m_customers.end();
+	return customers.end();
 }
 
 // private methods

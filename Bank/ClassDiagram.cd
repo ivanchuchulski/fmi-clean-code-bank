@@ -9,11 +9,8 @@
   </Class>
   <Class Name="AccountList">
     <Position X="14.25" Y="0.75" Width="3.75" />
-    <Compartments>
-      <Compartment Name="Fields" Collapsed="true" />
-    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAACQCAQAAAAAACQYAAAAQAAAAAAAAAAAiAUBAAAA=</HashCode>
+      <HashCode>AAAAACQCAQAAAAAACAYAAAAQAIAAAAAAAAAiAUBAAAA=</HashCode>
       <FileName>src\AccountList\AccountList.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -55,40 +52,40 @@
   <Class Name="CustomerList">
     <Position X="16" Y="7" Width="3.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAACAIAAAAAABAIQAABwACAAIAAAAAAgAABBAAA=</HashCode>
+      <HashCode>AAAAAAADAIAAAAAABAIQAABQACAAIAAAAAAgAABBAAA=</HashCode>
       <FileName>src\CustomerList\CustomerList.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Account">
     <Position X="6.5" Y="0.5" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AAAAACAABAAAhCAAgACCYgAMAgQAAAIAAAAgAAAAAEI=</HashCode>
+      <HashCode>AAAEACAABAAAhCAAAAACYgAMAoQAAAIAAAAgAAAAAEI=</HashCode>
       <FileName>src\Account\Account.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PrivilegeAccount">
-    <Position X="12" Y="7" Width="3" />
+    <Position X="11.5" Y="7.75" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAACCACAAAAAAIgAEAAQAAAAABAggAAAAAAI=</HashCode>
+      <HashCode>AAAAAAAAAACCACAAAAAAIgAEAAAAAAAABAAgAAAQBAI=</HashCode>
       <FileName>src\Accounts\PriviligeAccount\PrivilegeAccount.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SavingsAccount">
-    <Position X="6.5" Y="7.75" Width="3" />
+    <Position X="6.25" Y="7.75" Width="3" />
     <TypeIdentifier>
-      <HashCode>gAAQAAiAAAAAgKAAAAAAIgAEAAAAAAAAAAAgAAAAAII=</HashCode>
+      <HashCode>gAAAgAgAAAAAgKAAAAAAIgAEAAAAAAAAAgAgAAAAAII=</HashCode>
       <FileName>src\Accounts\SavingsAccount\SavingsAccount.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Bank">
     <Position X="20.25" Y="0.5" Width="3" />
     <TypeIdentifier>
-      <HashCode>AQAAAAEgACAAABQCBAACAQAoIKAAAAACAoAiARAABgA=</HashCode>
+      <HashCode>AQAAAAEgACAAABACBAACAQgoECIEAAACAoAiAQAABgA=</HashCode>
       <FileName>src\Bank\Bank.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="m_customerList" />
-      <Field Name="m_accountList" />
+      <Field Name="customerList" />
+      <Field Name="accountList" />
     </ShowAsAssociation>
   </Class>
   <Class Name="Utils">
@@ -101,7 +98,7 @@
   <Class Name="Customer">
     <Position X="21" Y="8.25" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>EAEAATEAAAAAAAAAgAAAgAAAAAAAAEQCAAAgQACABAA=</HashCode>
+      <HashCode>AAEAATAAAAAAAAAAgAAAgAAAABIEACACAAAgQAAABgA=</HashCode>
       <FileName>src\Customer\Customer.h</FileName>
     </TypeIdentifier>
   </Class>

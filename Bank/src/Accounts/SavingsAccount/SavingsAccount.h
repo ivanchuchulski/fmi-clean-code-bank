@@ -28,9 +28,9 @@ public:
 	friend std::ostream& operator<<(std::ostream& outStream, const SavingsAccount& savingsAccount);
 
 private:
-	static const float M_YEARLY_INTEREST_DEFAULT;
+	static const float YEARLY_INTEREST_DEFAULT;
 
 private:
-	float m_yearlyInterestProcent;
+	float yearlyInterestProcent;
 };
 

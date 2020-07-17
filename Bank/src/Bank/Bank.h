@@ -53,10 +53,10 @@ private:
 	void CopyOtherBank(const Bank& otherBank);
 
 private:
-	std::string m_bankName;
-	std::string m_bankAddress;
-	CustomerList m_customerList;
-	AccountList m_accountList;
+	std::string name;
+	std::string address;
+	CustomerList customerList;
+	AccountList accountList;
 };
 
 #endif // !define BANK_H

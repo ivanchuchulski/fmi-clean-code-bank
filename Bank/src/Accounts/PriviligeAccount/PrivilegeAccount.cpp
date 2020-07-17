@@ -2,21 +2,21 @@
 #include <exception>
 
 // static member initialization
-const double PrivilegeAccount::M_OVERDRAFT_DEFAULT = 100.0;
+const double PrivilegeAccount::OVERDRAFT_DEFAULT = 100.0;
 
 PrivilegeAccount::PrivilegeAccount()
 	:	Account(),
-		m_overdraftOverBalance(M_OVERDRAFT_DEFAULT)
+		overdraft(OVERDRAFT_DEFAULT)
 {}
 
 PrivilegeAccount::PrivilegeAccount(const std::string& ownerName)
 	:	Account(ownerName),
-		m_overdraftOverBalance(M_OVERDRAFT_DEFAULT)
+		overdraft(OVERDRAFT_DEFAULT)
 {}
 
 PrivilegeAccount::PrivilegeAccount(const std::string& ownerName, double initialDeposit, double overdraft)
 	:	Account(ownerName, initialDeposit),
-		m_overdraftOverBalance((overdraft >= 0) ? overdraft : M_OVERDRAFT_DEFAULT)
+		overdraft((overdraft >= 0) ? overdraft : OVERDRAFT_DEFAULT)
 {}
 
 PrivilegeAccount& PrivilegeAccount::operator=(const PrivilegeAccount& other)
@@ -25,7 +25,7 @@ PrivilegeAccount& PrivilegeAccount::operator=(const PrivilegeAccount& other)
 	{
 		Account::operator=(static_cast<const Account&>(other));
 
-		m_overdraftOverBalance = other.m_overdraftOverBalance;
+		overdraft = other.overdraft;
 	}
 
 	return *this;
@@ -33,7 +33,7 @@ PrivilegeAccount& PrivilegeAccount::operator=(const PrivilegeAccount& other)
 
 const double PrivilegeAccount::GetOverdraft() const
 {
-	return m_overdraftOverBalance;
+	return overdraft;
 }
 
 void PrivilegeAccount::IncreaseOverdraft(double overdraftIncrease)
@@ -43,7 +43,7 @@ void PrivilegeAccount::IncreaseOverdraft(double overdraftIncrease)
 		throw std::exception("error : overdraft increase can\'t be negative value\n");
 	}
 
-	m_overdraftOverBalance += overdraftIncrease;
+	overdraft += overdraftIncrease;
 }
 
 void PrivilegeAccount::DecreaseOverdraft(double overdraftDecrease)
@@ -53,14 +53,14 @@ void PrivilegeAccount::DecreaseOverdraft(double overdraftDecrease)
 		throw std::exception("error : overdraft descrease can\'t be negative number\n");
 	}
 
-	double decreasedOverdraft = m_overdraftOverBalance - overdraftDecrease;
+	double decreasedOverdraft = overdraft - overdraftDecrease;
 
 	if (decreasedOverdraft < 0)
 	{
 		throw std::exception("error : overdraft can\'t become negative number\n");
 	}
 
-	m_overdraftOverBalance = decreasedOverdraft;
+	overdraft = decreasedOverdraft;
 }
 
 void PrivilegeAccount::Deposit(double depositAmmount)
@@ -83,7 +83,7 @@ void PrivilegeAccount::Withdraw(double withdrawAmmount)
 	}
 
 	// if balance is not enough for the withdraw and we can also use the overdraft
-	else if (GetBalance() + m_overdraftOverBalance >= withdrawAmmount) 
+	else if (GetBalance() + overdraft >= withdrawAmmount) 
 	{
 		double moneyLackFromBalance = withdrawAmmount - GetBalance();
 
@@ -116,7 +116,7 @@ Account* PrivilegeAccount::CloneAccount() const
 std::ostream& operator<<(std::ostream& outStream, const PrivilegeAccount& privilegedAccount)
 {
 	outStream << "account type : Privileged Account" << "\n"
-		<< "overdraft : " << privilegedAccount.m_overdraftOverBalance << "\n";
+		<< "overdraft : " << privilegedAccount.overdraft << "\n";
 
 	outStream << static_cast<const Account&>(privilegedAccount);
 

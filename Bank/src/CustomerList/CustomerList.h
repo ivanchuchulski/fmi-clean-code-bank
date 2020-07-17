@@ -36,7 +36,7 @@ private:
 	customer_const_iterator GetCustomerPosition(const std::string& customerName) const;
 
 private:
-	std::vector<Customer> m_customers;
+	std::vector<Customer> customers;
 };
 
 

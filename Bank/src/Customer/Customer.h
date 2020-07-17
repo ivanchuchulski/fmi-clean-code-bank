@@ -31,16 +31,15 @@ public:
 	bool Equals(const Customer& other) const;
 
 	friend std::ostream& operator<<(std::ostream& outStr, const Customer& customer);
-	friend std::istream& operator>>(std::istream& inStr, Customer& customer);
 
 private:
-	static unsigned int M_ID_COUNTER;
-	static const std::string M_ID_PREFIX;
+	static unsigned int ID_COUNTER;
+	static const std::string ID_PREFIX;
 
 private:
-	std::string m_id;
-	std::string m_name;
-	std::string m_address;
+	std::string id;
+	std::string name;
+	std::string address;
 };
 
 #endif // !CUSTOMER_H

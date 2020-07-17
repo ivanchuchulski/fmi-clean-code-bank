@@ -31,10 +31,10 @@ public:
 	friend std::ostream& operator<<(std::ostream& outStream, const PrivilegeAccount& somePrivilAcc);
 
 private:
-	static const double M_OVERDRAFT_DEFAULT;
+	static const double OVERDRAFT_DEFAULT;
 
 private:
-	double m_overdraftOverBalance;
+	double overdraft;
 };
 
 #endif // !PRIVILEGE_ACCOUNT_H
